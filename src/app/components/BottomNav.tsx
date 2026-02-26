@@ -10,8 +10,7 @@ export function BottomNav({ currentPage, onNavigate }: BottomNavProps) {
     { id: 'home', label: 'Home', icon: Home },
     { id: 'stationen', label: 'Stationen', icon: MapPin },
     { id: 'fuhrpark', label: 'Fuhrpark', icon: Truck },
-    { id: 'legales', label: 'Legales', icon: FileText },
-    { id: 'kontakt', label: 'Kontakt', icon: Phone },
+    { id: 'legales', label: 'Legales', icon: FileText }
   ];
 
   return (

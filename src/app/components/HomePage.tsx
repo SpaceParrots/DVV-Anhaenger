@@ -169,13 +169,7 @@ export function HomePage() {
                 Nr. 1 in Norddeutschland
               </span>
             </div>
-            <h1 className="text-[32px] lg:text-[40px] font-black text-[#0F172A] uppercase tracking-[-1px] leading-[1.1] mb-4">
-              Der schnellste Weg zu
-              <br />
-              <span className="text-primary">
-                ihrer Transportlösung
-              </span>
-            </h1>
+            <h1 className="font-black text-[#0F172A] uppercase tracking-[-1px] leading-[1.1] mb-4 text-[24px]">Der schnellste Weg zuR<br /><span className="text-primary">Transportlösung</span></h1>
             <p className="text-[14px] lg:text-[16px] text-[#64748B] leading-relaxed mb-6 max-w-[480px]">
               DVV RENT ist Ihr zuverlässiger Partner für
               Anhängervermietung in Hamburg, Schleswig-Holstein

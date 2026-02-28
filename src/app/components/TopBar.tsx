@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 
 export function TopBar() {
   const announcements = [
-    "+100.000 GLÜCKLICHE KUNDEN (4,9/5 STERNE ★★★★★)",
-    "+50 ANHÄNGER 24/7 VERFÜGBAR",
-    "BUNDESWEITE VERMIETUNG IN NORDDEUTSCHLAND",
-    "ONLINE BUCHEN & SOFORT ABHOLEN ⚡",
+    "WIR SETZEN AUF QUALITÄTSANHÄNGER & -TRANSPORTER",
+    "+50 ANHÄNGER AN ÜBER 16 STANDORTEN VERFÜGBAR",
+    "VERMIETUNG IN HH, SCHLESWIG-HOLSTEIN & MVP",
+    "TELEFONISCHE ABSPRACHE MÖGLICH 📞",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

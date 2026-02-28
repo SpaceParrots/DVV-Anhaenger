@@ -6,102 +6,166 @@ import {
   CheckCircle,
   ArrowRight,
   Truck,
+  Package,
+  Clock,
+  Gauge,
+  Fuel,
+  Info,
 } from "lucide-react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import heroTrailerImg from "figma:asset/8e05b2ac41f01dce3cdb575493eb2750de157665.png";
+import { motion, useScroll, useTransform } from "motion/react";
 
-const locations = [
-  {
-    name: "Ahrensburg (HQ)",
-    address: "Hauptzentrale",
-    tag: "ZENTRALE",
-    trailers: ["750kg", "1350kg", "2600kg"],
-  },
-  {
-    name: "HH-Wandsbek",
-    address: "Hamburg Ost",
-    trailers: ["750kg", "1350kg"],
-  },
-  {
-    name: "Lübeck-Süd",
-    address: "Nähe A1 Ost",
-    trailers: ["750kg", "2600kg"],
-  },
-  {
-    name: "Norderstedt",
-    address: "Hamburg Nord",
-    trailers: ["750kg", "1350kg", "2600kg"],
-  },
-  {
-    name: "Elmshorn",
-    address: "Kreis Pinneberg",
-    trailers: ["750kg", "1350kg"],
-  },
-];
+// Trailer Images
+import heroTrailerImg from "figma:asset/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
+import trailer750FlachImg from "figma:asset/DVVRENT_Trailer_750kg_Flachplane.png";
+import trailer750HochImg from "figma:asset/DVV_RENT_Trailer_750kg_Hochplane.png";
+import trailer1350Img from "figma:asset/DVV_RENT_Trailer_1350kg_Hochplane.png";
+import trailer2700PImg from "figma:asset/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
+import trailer2700AImg from "figma:asset/DVV_RENT_Trailer_Autotransporter_2700kg.png";
+import vanImg from 'figma:asset/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
+
+import { allStationsData } from "../data/stations";
+import { ProcessSteps } from "./ProcessSteps";
 
 const fleetData = [
   {
-    name: "750kg Plane",
-    tag: "BESTSELLER",
-    tagColor: "bg-black",
-    license: "Führerschein B • Ungebremst",
-    price: "29,00",
-    image:
-      "https://images.unsplash.com/photo-1758243954976-049822ad9d8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWQlMjB0cmFpbGVyJTIwdHJhbnNwb3J0YXRpb258ZW58MXx8fHwxNzcxODUwMzc3fDA&ixlib=rb-4.1.0&q=80&w=1080",
-    specs: {
-      weight: "750 kg",
-      payload: "579 kg",
-      brake: "Nein",
-    },
-    dimensions: {
-      length: "2515 mm",
-      width: "1300 mm",
-      height: "1500 mm",
-    },
+    name: '750kg Hochplane',
+    tag: 'BESTSELLER',
+    tagColor: 'bg-primary',
+    license: 'Führerschein B • Ungebremst',
+    price: '30,00',
+    image: trailer750HochImg,
+    specs: { weight: '750 kg', payload: '579 kg', brake: 'Nein' },
+    dimensions: { length: '2515 mm', width: '1300 mm', height: '1500 mm' },
+    h4Price: '15,00'
   },
   {
-    name: "1350kg Plane",
-    tag: "TOP-EMPFEHLUNG",
-    tagColor: "bg-[#E30613]",
-    license: "Führerschein B • Gebremst",
-    price: "39,00",
-    image:
-      "https://images.unsplash.com/photo-1622743473611-4d2842d8d009?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXJnbyUyMHRyYWlsZXIlMjB2ZWhpY2xlfGVufDF8fHx8MTc3MTg1MDM3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-    specs: {
-      weight: "1350 kg",
-      payload: "1089 kg",
-      brake: "Ja",
-    },
-    dimensions: {
-      length: "2515 mm",
-      width: "1300 mm",
-      height: "1500 mm",
-    },
+    name: '750kg Flachplane',
+    tag: 'KOMPAKT & WENDIG',
+    tagColor: 'bg-black',
+    license: 'Führerschein B • Ungebremst',
+    price: '35,00',
+    image: trailer750FlachImg,
+    specs: { weight: '750 kg', payload: '615 kg', brake: 'Nein' },
+    dimensions: { length: '2515 mm', width: '1300 mm', height: '400 mm' },
+    h4Price: '18,00'
   },
   {
-    name: "2600kg Auto",
-    tag: "XXL-KAPAZITÄT",
-    tagColor: "bg-[#0055A4]",
-    license: "Führerschein BE • Gebremst",
-    price: "59,00",
-    image:
-      "https://images.unsplash.com/photo-1698245900574-051997b35b2c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjB0cmFpbGVyJTIwcmVudGFsfGVufDF8fHx8MTc3MTg1MDM3OHww&ixlib=rb-4.1.0&q=80&w=1080",
-    specs: {
-      weight: "2600 kg",
-      payload: "2100 kg",
-      brake: "Ja",
-    },
-    dimensions: {
-      length: "4000 mm",
-      width: "2000 mm",
-      height: "1800 mm",
-    },
+    name: '1350kg Hochplane',
+    tag: 'TOP-EMPFEHLUNG',
+    tagColor: 'bg-primary',
+    license: 'Führerschein B • Gebremst',
+    price: '35,00',
+    image: trailer1350Img,
+    specs: { weight: '1350 kg', payload: '1089 kg', brake: 'Ja' },
+    dimensions: { length: '2515 mm', width: '1300 mm', height: '1500 mm' },
+    h4Price: '18,00'
+  },
+  {
+    name: '2700kg Plane',
+    tag: 'PLATZWUNDER',
+    tagColor: 'bg-[#059669]',
+    license: 'Führerschein BE • Gebremst',
+    price: '60,00',
+    image: trailer2700PImg,
+    specs: { weight: '2700 kg', payload: '2100 kg', brake: 'Ja' },
+    dimensions: { length: '3000 mm', width: '1500 mm', height: '1800 mm' },
+    h4Price: '35,00'
+  },
+  {
+    name: '2700kg Auto',
+    tag: 'XXL-KAPAZITÄT',
+    tagColor: 'bg-dark',
+    license: 'Führerschein BE • Gebremst',
+    price: '60,00',
+    image: trailer2700AImg,
+    specs: { weight: '2700 kg', payload: '2050 kg', brake: 'Ja' },
+    dimensions: { length: '4000 mm', width: '2000 mm', height: '100 mm' },
+    h4Price: '35,00'
   },
 ];
 
-export function HomePage() {
+const transporterData = [
+  {
+    id: 'l',
+    name: 'Iveco Daily Gr. L',
+    tag: 'DER ALLROUNDER',
+    tagColor: 'bg-black',
+    specs: { model: '3,5t', transmission: 'Automatik', extra: 'AHK / Rückf. Kamera' },
+    dimensions: { length: '3,50 m' },
+    price: '149,00',
+    h4Price: '59,00',
+    features: ['Automatikgetriebe', 'Rückfahrkamera', 'Anhängerkupplung', 'Vollkasko mit 1.000€ SB inkl.'],
+    pricing: {
+      moDo: [
+        { label: '4 Std.', price: '59,-', km: '250' },
+        { label: '8 Std.', price: '99,-', km: '500' },
+        { label: '12 Std.', price: '119,-', km: '750' },
+        { label: '24 Std.', price: '149,-', km: '1000' }
+      ],
+      frSo: [
+        { label: '8 Std.', price: '119,-', km: '500' },
+        { label: '12 Std.', price: '149,-', km: '750' },
+        { label: '24 Std.', price: '179,-', km: '1000' }
+      ]
+    }
+  },
+  {
+    id: 'xl',
+    name: 'Iveco Daily Gr. XL',
+    tag: 'MAXIMALE LAST',
+    tagColor: 'bg-primary',
+    specs: { model: '3,5t', transmission: 'Automatik', extra: 'AHK / Rückf. Kamera' },
+    dimensions: { length: '4,60 m' },
+    price: '179,00',
+    h4Price: '79,00',
+    features: ['Extra lange Ladefläche', 'Automatikgetriebe', 'Rückfahrkamera', 'Vollkasko mit 1.000€ SB inkl.'],
+    pricing: {
+      moDo: [
+        { label: '4 Std.', price: '79,-', km: '250' },
+        { label: '8 Std.', price: '119,-', km: '500' },
+        { label: '12 Std.', price: '149,-', km: '750' },
+        { label: '24 Std.', price: '179,-', km: '1000' }
+      ],
+      frSo: [
+        { label: '8 Std.', price: '139,-', km: '500' },
+        { label: '12 Std.', price: '169,-', km: '750' },
+        { label: '24 Std.', price: '199,-', km: '1000' }
+      ]
+    }
+  }
+];
+
+interface HomePageProps {
+  onNavigate: (page: string, state?: any) => void;
+}
+
+function HeroTrailerAnimation({ src }: { src: string }) {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "150%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  return (
+    <div ref={containerRef} className="relative w-full h-full flex items-center justify-center p-8">
+      <motion.div
+        style={{ x, opacity, scale }}
+        className="relative z-10 w-full max-w-[400px]"
+      >
+        
+      </motion.div>
+    </div>
+  );
+}
+
+export function HomePage({ onNavigate }: HomePageProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [visibleCards, setVisibleCards] = useState<Set<number>>(
     new Set(),
@@ -135,12 +199,14 @@ export function HomePage() {
     const container = scrollRef.current;
     if (container) {
       const cardWidth = container.children[0]?.clientWidth || 0;
-      const gap = 16; // 16px gap (gap-4)
+      const gap = 16; 
       const scrollPosition = index * (cardWidth + gap);
       container.scrollTo({
         left: scrollPosition,
         behavior: "smooth",
       });
+      // Sofortiges Highlight setzen für besseres Feedback
+      setCurrentSlide(index);
     }
   };
 
@@ -158,7 +224,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="pb-24 md:pb-12 pt-[138px] bg-[#F8FAFC] min-h-screen">
+    <div className="pb-24 md:pb-12 pt-[158px] bg-[#F8FAFC] min-h-screen">
       {/* Hero Card */}
       <div className="px-5 mb-8">
         <div className="flex flex-col md:flex-row md:min-h-[420px]">
@@ -169,19 +235,18 @@ export function HomePage() {
                 Nr. 1 in Norddeutschland
               </span>
             </div>
-            <h1 className="font-black text-[#0F172A] uppercase tracking-[-1px] leading-[1.1] mb-4 text-[24px]">Der schnellste Weg zuR<br /><span className="text-primary">Transportlösung</span></h1>
+            <h1 className="font-black text-dark uppercase tracking-[-1px] leading-[1.1] mb-4 text-[24px]">Der schnellste Weg zuR<br /><span className="text-primary">Transportlösung</span></h1>
             <p className="text-[14px] lg:text-[16px] text-[#64748B] leading-relaxed mb-6 max-w-[480px]">
               DVV RENT ist Ihr zuverlässiger Partner für
               Anhängervermietung in Hamburg, Schleswig-Holstein
               und Mecklenburg-Vorpommern. Hochwertige
-              Böckmann-Anhänger von 750 kg bis 2.600 kg –
+              Böckmann-Anhänger von 750 kg bis 2.700 kg –
               flexibel für Umzug, Transport oder Gewerbe. Über
               16 Mietstationen in Norddeutschland.
             </p>
             <div className="flex flex-wrap gap-3 mb-6">
               {[
-                "Führerschein B genügt",
-                "Ab 29 €/Tag",
+                "Ab 15 €/4h",
                 "16+ Standorte",
               ].map((item) => (
                 <div
@@ -189,7 +254,7 @@ export function HomePage() {
                   className="flex items-center gap-2 bg-[#F1F5F9] px-3 py-2 rounded-[10px]"
                 >
                   <CheckCircle className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-[11px] font-bold text-[#0F172A] uppercase tracking-[0.5px]">
+                  <span className="text-[11px] font-bold text-dark uppercase tracking-[0.5px]">
                     {item}
                   </span>
                 </div>
@@ -198,34 +263,37 @@ export function HomePage() {
           </div>
 
           {/* Right: Image + CTA */}
-          <div className="md:flex-1 md:flex md:flex-col bg-white rounded-[40px] shadow-md overflow-hidden border-4 border-white ">
-            <div className="relative h-38 md:h-full md:min-h-[240px] md:rounded-none">
-              <ImageWithFallback
-                src={heroTrailerImg}
-                alt="DVV RENT Anhänger mieten – Böckmann Qualitätsanhänger in Norddeutschland"
-                className="w-full h-full object-cover"
-              />
+          <div className="md:flex-1 md:flex md:flex-col bg-white rounded-[40px] shadow-md overflow-hidden border-4 border-white h-[280px] md:h-auto">
+            <div className="relative h-full overflow-hidden">
+              {/* Road Background */}
+              <div className="absolute inset-0 opacity-80">
+                <ImageWithFallback
+                  src="https://images.unsplash.com/photo-1760887527978-675b4c3eecfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhc3BoYWx0JTIwaGlnaHdheSUyMHJvYWQlMjBwZXJzcGVjdGl2ZXxlbnwxfHx8fDE3NzIzMTYwNzJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  alt="Road background"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
+              </div>
+
+              {/* Driving Trailer Animation */}
+              <HeroTrailerAnimation src={heroTrailerImg} />
+
               {/* Desktop-only overlay button */}
-              <div className="absolute bottom-7 right-7 left-7 hidden md:flex p-5 md:p-6">
-                <button className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(227,6,19,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+              <div className="absolute bottom-7 right-7 left-7 hidden md:flex p-5 md:p-6 z-10">
+                <button 
+                  onClick={() => onNavigate("stationen")}
+                  className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                >
                   <MapPin className="w-4 h-4" />
                   MIETSTATION FINDEN
                 </button>
               </div>
-              {/* Mobile-only overlay text */}
-              <div className="absolute bottom-7 left-7 md:hidden">
-                <h1 className="text-[24px] font-black leading-[24px] text-white uppercase">
-                  Anhänger mieten –
-                  <br />
-                  einfach & günstig
-                </h1>
-                <p className="text-[10px] font-bold tracking-[1px] uppercase text-white/80 mt-1">
-                  Ihre Transportlösung in Norddeutschland
-                </p>
-              </div>
             </div>
             <div className="md:hidden p-7 md:p-6">
-              <button className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(227,6,19,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+              <button 
+                onClick={() => onNavigate("stationen")}
+                className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+              >
                 <MapPin className="w-4 h-4" />
                 MIETSTATION FINDEN
               </button>
@@ -233,9 +301,6 @@ export function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* Quick Stats */}
-      <div className="px-5 mb-8"></div>
 
       {/* WOW Banner */}
       <div className="px-5 mb-8">
@@ -256,7 +321,7 @@ export function HomePage() {
       {/* Locations Section */}
       <div className="px-5 mb-8">
         <div className="mb-6">
-          <h2 className="text-[24px] font-black text-[#0F172A] tracking-[-0.6px] mb-1">
+          <h2 className="text-[24px] font-black text-dark tracking-[-0.6px] mb-1">
             Unsere Standorte
           </h2>
           <p className="text-[12px] font-bold text-[#64748B]">
@@ -265,14 +330,14 @@ export function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {locations.map((location, index) => (
+          {allStationsData.slice(0, 6).map((location, index) => (
             <div
               key={index}
               className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]"
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-[16px] font-black text-[#0F172A] leading-tight mb-1">
+                  <h3 className="text-[16px] font-black text-dark leading-tight mb-1">
                     {location.name}
                   </h3>
                   <p className="text-[10px] font-bold tracking-[0.5px] uppercase text-[#94A3B8]">
@@ -280,21 +345,21 @@ export function HomePage() {
                   </p>
                 </div>
                 {location.tag && (
-                  <div className="bg-[#F1F5F9] px-2 py-1 rounded-[12px]">
-                    <span className="text-[9px] font-black tracking-[0.5px] uppercase text-[#0F172A]">
+                  <div className={`${location.tagColor || 'bg-[#F1F5F9] text-dark'} px-2 py-1 rounded-[12px]`}>
+                    <span className="text-[9px] font-black tracking-[0.5px] uppercase">
                       {location.tag}
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="flex gap-2 mb-4">
-                {location.trailers.map((trailer, i) => (
+              <div className="flex flex-wrap gap-2 mb-4">
+                {location.items.map((trailer, i) => (
                   <div
                     key={i}
                     className="bg-[#F1F5F9] px-2.5 py-1.5 rounded-[8px]"
                   >
-                    <span className="text-[9px] font-bold text-[#0F172A]">
+                    <span className="text-[9px] font-bold text-dark whitespace-nowrap">
                       {trailer}
                     </span>
                   </div>
@@ -302,74 +367,37 @@ export function HomePage() {
               </div>
 
               <div className="flex gap-2">
-                <button className="flex-1 bg-primary text-white text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] shadow-[0px_4px_6px_-1px_rgba(227,6,19,0.2)] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                <a
+                  href={`tel:${location.phoneClean}`}
+                  className="flex-1 bg-primary text-white text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                >
                   <Phone className="w-3 h-3" />
                   ANRUFEN
-                </button>
-                <button className="flex-1 bg-[#F1F5F9] text-[#0F172A] text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                </a>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address + ", " + location.city)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-[#F1F5F9] text-dark text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                >
                   <MapPin className="w-3 h-3" />
                   ANFAHRT
-                </button>
+                </a>
               </div>
             </div>
           ))}
         </div>
 
-        <button className="w-full mt-4 text-[#94A3B8] text-[11px] font-black tracking-[1px] uppercase py-3">
+        <button 
+          onClick={() => onNavigate("stationen")}
+          className="w-full mt-4 text-[#94A3B8] text-[11px] font-black tracking-[1px] uppercase py-3 transition-colors hover:text-primary"
+        >
           ALLE 16 STANDORTE ANZEIGEN →
         </button>
       </div>
 
       {/* Process Section */}
-      <div className="px-5 mb-8">
-        <div className="text-center mb-8">
-          <h2 className="text-[10px] font-black tracking-[2px] uppercase text-[#94A3B8] mb-1">
-            IN 5 SCHRITTEN ZUM ANHÄNGER
-          </h2>
-        </div>
-
-        <div className="relative">
-          <div className="absolute top-5 left-10 right-10 h-px bg-[#E2E8F0] border-t border-dashed border-[#E5E7EB]" />
-          <div className="flex justify-between px-1 relative">
-            {[
-              { icon: Truck, label: "Standort wählen" },
-              { icon: Phone, label: "Station anrufen" },
-              { icon: Calendar, label: "Termin reservieren" },
-              {
-                icon: CheckCircle,
-                label: "Anhänger abholen",
-                active: true,
-              },
-            ].map((step, index) => (
-              <div
-                key={index}
-                className="flex flex-col items-center gap-2 flex-1 max-w-[70px]"
-              >
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    step.active
-                      ? "bg-primary shadow-[0px_10px_15px_-3px_rgba(227,6,19,0.3)]"
-                      : "bg-white border border-[#E2E8F0] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]"
-                  }`}
-                >
-                  <step.icon
-                    className={`w-4 h-4 ${step.active ? "text-white" : "text-primary"}`}
-                  />
-                </div>
-                <span
-                  className={`text-[9px] font-bold text-center leading-tight uppercase ${
-                    step.active
-                      ? "text-primary"
-                      : "text-[#64748B]"
-                  }`}
-                >
-                  {step.label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <ProcessSteps />
 
       {/* Fleet Carousel */}
       <div className="mb-8">
@@ -385,7 +413,7 @@ export function HomePage() {
             <div className="w-2 h-2 rounded-full bg-primary" />
             <div className="flex-1 text-right">
               <p className="text-[10px] font-bold tracking-[1px] uppercase text-[#9CA3AF] leading-tight">
-                5 Modelle
+                {fleetData.length} Modelle
                 <br />
                 verfügbar
               </p>
@@ -405,13 +433,23 @@ export function HomePage() {
             <div
               key={index}
               data-index={index}
-              className={`min-w-[280px] snap-center transition-all duration-500 ${
+              className={`min-w-[85%] md:min-w-[280px] snap-center transition-all duration-500 ${
                 visibleCards.has(index)
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-4"
               }`}
             >
-              <div className="bg-white rounded-[24px] overflow-hidden shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F3F4F6] h-full flex flex-col">
+              <motion.div
+                initial={false}
+                animate={currentSlide === index ? {
+                  scale: [1, 1.02, 1],
+                  borderColor: ['#F3F4F6', '#ef4444', '#F3F4F6'],
+                  boxShadow: ['0 1px 2px 0 rgba(0,0,0,0.05)', '0 10px 25px -5px rgba(239, 68, 68, 0.1)', '0 1px 2px 0 rgba(0,0,0,0.05)']
+                } : {}}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                onClick={() => onNavigate("stationen", { vehicle: trailer.name })}
+                className={`bg-white rounded-[24px] overflow-hidden border-2 h-full flex flex-col transition-colors cursor-pointer ${currentSlide === index ? 'border-primary' : 'border-[#F3F4F6]'}`}
+              >
                 <div className="relative h-40 bg-gradient-to-b from-[#F0F2F5] to-[#E2E8F0] flex-shrink-0">
                   <div className="absolute inset-[60%_0_0_0] bg-gradient-to-b from-transparent to-black/10" />
                   <ImageWithFallback
@@ -450,17 +488,17 @@ export function HomePage() {
                         Technik
                       </div>
                       <div className="space-y-1 text-[11px] font-bold text-black">
-                        <div className="flex justify-between">
-                          <span>Gewicht:</span>
-                          <span>{trailer.specs.weight}</span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Gewicht:</span>
+                          <span className="whitespace-nowrap">{trailer.specs.weight}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Nutzlast:</span>
-                          <span>{trailer.specs.payload}</span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Nutzlast:</span>
+                          <span className="whitespace-nowrap">{trailer.specs.payload}</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Bremse:</span>
-                          <span>{trailer.specs.brake}</span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Bremse:</span>
+                          <span className="whitespace-nowrap">{trailer.specs.brake}</span>
                         </div>
                       </div>
                     </div>
@@ -470,21 +508,21 @@ export function HomePage() {
                         Maße (Innen)
                       </div>
                       <div className="space-y-1 text-[11px] font-bold text-black">
-                        <div className="flex justify-between">
-                          <span>Länge:</span>
-                          <span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Länge:</span>
+                          <span className="whitespace-nowrap">
                             {trailer.dimensions.length}
                           </span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Breite:</span>
-                          <span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Breite:</span>
+                          <span className="whitespace-nowrap">
                             {trailer.dimensions.width}
                           </span>
                         </div>
-                        <div className="flex justify-between">
-                          <span>Höhe:</span>
-                          <span>
+                        <div className="flex justify-between gap-1">
+                          <span className="shrink-0">Höhe:</span>
+                          <span className="whitespace-nowrap">
                             {trailer.dimensions.height}
                           </span>
                         </div>
@@ -492,12 +530,21 @@ export function HomePage() {
                     </div>
                   </div>
 
-                  <button className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] transition-all active:scale-[0.98] flex items-center justify-center gap-3">
-                    JETZT BUCHEN
-                    <Calendar className="w-4 h-4" />
+                  {/* Quick Info Badge for Home */}
+                  <div className="flex items-center gap-2 mb-4">
+                    <Clock className="w-3.5 h-3.5 text-primary" />
+                    <span className="text-[10px] font-black text-dark uppercase tracking-[0.5px]">4h Miete ab {trailer.h4Price}€</span>
+                  </div>
+
+                  <button 
+                    onClick={() => onNavigate("stationen", { vehicle: trailer.name })}
+                    className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                  >
+                    STATION FINDEN
+                    <MapPin className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
+              </motion.div>
             </div>
           ))}
         </div>
@@ -505,10 +552,9 @@ export function HomePage() {
         {/* Carousel Controls */}
         <div className="px-5 mt-6">
           <div className="flex items-center justify-between">
-            {/* Navigation Buttons */}
             <button
               onClick={prevSlide}
-              className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-[0px_4px_6px_-1px_rgba(227,6,19,0.2)] transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
+              className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronLeft
                 className="w-5 h-5"
@@ -516,7 +562,6 @@ export function HomePage() {
               />
             </button>
 
-            {/* Dot Indicators */}
             <div className="flex gap-2">
               {fleetData.map((_, index) => (
                 <button
@@ -533,7 +578,7 @@ export function HomePage() {
 
             <button
               onClick={nextSlide}
-              className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-[0px_4px_6px_-1px_rgba(227,6,19,0.2)] transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
+              className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronRight
                 className="w-5 h-5"
@@ -544,33 +589,191 @@ export function HomePage() {
         </div>
       </div>
 
-      {/* WhatsApp CTA */}
-      <div className="px-5 mb-8">
-        <div className="bg-white rounded-[32px] p-6 shadow-[0px_20px_25px_-5px_rgba(226,232,240,0.6)] border border-[#F8FAFC]">
-          <div className="text-center mb-4">
-            <p className="text-[10px] font-black tracking-[2px] uppercase text-[#94A3B8]">
-              FRAGEN? SCHREIBEN SIE UNS
+      {/* Transporter Section */}
+      <div className="px-5 mb-12">
+        <div className="mb-6 flex items-center justify-between">
+          <div>
+            <h2 className="text-[20px] font-black text-black tracking-[-0.5px] uppercase leading-tight">
+              NEU IM FUHRPARK:
+              <br />
+              <span className="text-primary">TRANSPORTER</span>
+            </h2>
+          </div>
+          <div className="flex-1 text-right">
+            <p className="text-[10px] font-bold tracking-[1px] uppercase text-[#9CA3AF] leading-tight">
+              Iveco Daily 3,5t
+              <br />
+              L & XL
             </p>
           </div>
-          <button className="w-full bg-[#25D366] text-white text-[18px] font-black leading-[28px] py-4 rounded-[16px] shadow-[0px_10px_15px_-3px_rgba(37,211,102,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-3">
-            <MessageCircle className="w-5 h-5" />
-            WHATSAPP CHAT STARTEN
-          </button>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6">
+          {transporterData.map((van) => (
+            <motion.div 
+              key={van.id} 
+              whileHover={{ 
+                scale: 1.01,
+                borderColor: '#ef4444',
+                boxShadow: '0 20px 25px -5px rgba(239, 68, 68, 0.1)'
+              }}
+              onClick={() => onNavigate("stationen", { vehicle: van.name })}
+              className="bg-white rounded-[32px] overflow-hidden shadow-lg border-2 border-[#F1F5F9] transition-all duration-300 cursor-pointer"
+            >
+              <div className="relative h-48 md:h-64 bg-gradient-to-b from-[#F0F2F5] to-[#E2E8F0]">
+                <ImageWithFallback src={vanImg} alt={van.name} className="w-full h-full object-cover" />
+                <div className={`absolute top-4 left-5 ${van.tagColor} px-4 py-1.5 rounded-[10px] shadow-lg`}>
+                  <span className="text-[11px] font-black tracking-[1px] uppercase text-white">{van.tag}</span>
+                </div>
+                {/* L/XL Badge overlay */}
+                <div className="absolute top-4 right-5 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-[10px] border border-[#E2E8F0]">
+                  <span className="text-[14px] font-black text-dark tracking-[1px]">GR. {van.id.toUpperCase()}</span>
+                </div>
+              </div>
+
+              <div className="p-6">
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-[22px] font-black text-dark tracking-[-1px] uppercase leading-tight mb-1">{van.name}</h3>
+                    <div className="flex flex-wrap gap-2 mt-2">
+                      <span className="bg-[#F1F5F9] text-[9px] font-bold text-[#64748B] px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">{van.specs.transmission}</span>
+                      <span className="bg-[#F1F5F9] text-[9px] font-bold text-[#64748B] px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">{van.specs.extra}</span>
+                      <span className="bg-primary/10 text-[9px] font-bold text-primary px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">Ladelänge {van.dimensions.length}</span>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-[10px] font-bold text-[#94A3B8] uppercase mb-1">Ab</div>
+                    <div className="text-[24px] font-black text-dark tracking-[-1.5px] leading-none">{van.h4Price} €</div>
+                    <div className="text-[10px] font-bold text-[#6B7280] mt-1">/ 4 Std.</div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  {/* Mo - Do Pricing */}
+                  <div className="bg-[#F8FAFC] rounded-[20px] p-4 border border-[#F1F5F9]">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Calendar className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-[10px] font-black text-dark tracking-[1px] uppercase">Mo. - Do. Tarife</span>
+                    </div>
+                    <div className="space-y-2">
+                      {van.pricing.moDo.map((p, i) => (
+                        <div key={i} className="flex justify-between items-center text-[12px] border-b border-dotted border-[#E2E8F0] pb-1 last:border-0">
+                          <span className="font-bold text-[#64748B]">{p.label}</span>
+                          <div className="text-right">
+                            <span className="font-black text-dark">{p.price} €</span>
+                            <span className="text-[9px] font-bold text-[#94A3B8] ml-2">({p.km} km frei)</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Fr - So Pricing */}
+                  <div className="bg-[#F8FAFC] rounded-[20px] p-4 border border-[#F1F5F9]">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Clock className="w-3.5 h-3.5 text-primary" />
+                      <span className="text-[10px] font-black text-dark tracking-[1px] uppercase">Fr. - So. Tarife</span>
+                    </div>
+                    <div className="space-y-2">
+                      {van.pricing.frSo.map((p, i) => (
+                        <div key={i} className="flex justify-between items-center text-[12px] border-b border-dotted border-[#E2E8F0] pb-1 last:border-0">
+                          <span className="font-bold text-[#64748B]">{p.label}</span>
+                          <div className="text-right">
+                            <span className="font-black text-dark">{p.price} €</span>
+                            <span className="text-[9px] font-bold text-[#94A3B8] ml-2">({p.km} km frei)</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="bg-primary/5 border border-primary/20 rounded-[16px] p-3 text-center">
+                    <div className="text-[9px] font-bold text-primary uppercase mb-1">Wochenendtarif</div>
+                    <div className="text-[14px] font-black text-dark">3 Tage / 1500 km</div>
+                    <div className="text-[16px] font-black text-primary mt-1">{van.id === 'l' ? '399,- €' : '449,- €'}</div>
+                  </div>
+                  <div className="bg-dark border border-dark rounded-[16px] p-3 text-center">
+                    <div className="text-[9px] font-bold text-white/60 uppercase mb-1">Wochentarif</div>
+                    <div className="text-[14px] font-black text-white">7 Tage / 2500 km</div>
+                    <div className="text-[16px] font-black text-primary mt-1">{van.id === 'l' ? '749,- €' : '799,- €'}</div>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-4 items-center justify-between py-4 border-t border-[#F1F5F9] mb-6">
+                  <div className="flex items-center gap-2">
+                    <Gauge className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Extra: 0,25€ / KM</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Package className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Kaution: 200,- €</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Fuel className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Tank: Voll / Voll</span>
+                  </div>
+                </div>
+
+                <button 
+                  onClick={() => onNavigate("stationen", { vehicle: "Iveco Daily 3,5t" })}
+                  className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                >
+                  TRANSPORTER ANFRAGEN
+                  <MapPin className="w-4 h-4" />
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Ad Blue & Extra KM Info */}
+        <div className="mt-6 bg-[#F8FAFC] rounded-[24px] p-6 border border-[#F1F5F9]">
+          <div className="flex items-center gap-2 mb-4">
+            <Info className="w-4 h-4 text-primary" />
+            <h4 className="text-[12px] font-black text-dark uppercase tracking-[0.5px]">Wichtige Miet-info für transporter</h4>
+          </div>
+          <div className="space-y-4">
+            <div>
+              <p className="text-[11px] font-bold text-[#64748B] uppercase mb-2">Ad Blue Pauschale (nach gefahrenen KM):</p>
+              <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col">
+                  <span className="text-[12px] font-black text-dark">0€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">0 - 249 km</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] font-black text-dark">5€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">250 - 499 km</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] font-black text-dark">10€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">500 - 749 km</span>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[12px] font-black text-dark">15€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">750 - 1000 km</span>
+                </div>
+              </div>
+            </div>
+            <p className="text-[10px] text-[#94A3B8] leading-relaxed italic border-t border-[#E2E8F0] pt-4">
+              Alle Preise inkl. MwSt. Gültig ab 01.01.2026. Vorherige Tarife verlieren ihre Gültigkeit.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Phone CTA */}
       <div className="px-5">
-        <div className="bg-gradient-to-r from-[#0F172A] to-[#1E293B] rounded-[24px] p-6 text-center">
-          <div className="text-[11px] font-black tracking-[1.5px] uppercase text-white/60 mb-3">
-            Persönliche Beratung
-          </div>
-          <div className="text-[18px] font-black text-white mb-4">
-            24/7 Fachliche Hotline
-          </div>
-          <button className="w-full bg-white text-[#0F172A] text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[16px] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
-            <Phone className="w-4 h-4" />
-            JETZT ANRUFEN
+        <div className="bg-gradient-to-r from-dark to-[#1E293B] rounded-[24px] p-6 text-center">
+          <div className="text-[11px] font-black tracking-[1.5px] uppercase text-white/60 mb-3">ANhänger & Transporter Mieten?</div>
+          <div className="text-[18px] font-black text-white mb-4">24/7 MIETSERVICE</div>
+          <button 
+            onClick={() => onNavigate("stationen")}
+            className="w-full bg-white text-dark text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[16px] transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            <MapPin className="w-4 h-4" />
+            STATION FINDEN
           </button>
         </div>
       </div>

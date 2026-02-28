@@ -2,10 +2,10 @@ import { Phone, Mail, MessageCircle, MapPin, Clock } from 'lucide-react';
 
 export function KontaktPage() {
   return (
-    <div className="pb-24 md:pb-12 pt-[138px] bg-[#F8FAFC] min-h-screen">
+    <div className="pb-24 md:pb-12 pt-[158px] bg-[#F8FAFC] min-h-screen">
       <div className="px-5">
         <div className="mb-8">
-          <h1 className="text-[30px] font-black text-[#0F172A] tracking-[-0.75px] leading-tight mb-2">
+          <h1 className="text-[30px] font-black text-dark tracking-[-0.75px] leading-tight mb-2">
             Kontakt
           </h1>
           <p className="text-[14px] font-medium text-[#64748B]">
@@ -15,7 +15,7 @@ export function KontaktPage() {
 
         {/* Quick Contact Cards */}
         <div className="grid grid-cols-2 gap-3 mb-8">
-          <button className="bg-[#E30613] rounded-[20px] p-5 shadow-[0px_10px_15px_-3px_rgba(227,6,19,0.3)] transition-all active:scale-[0.98]">
+          <button className="bg-primary rounded-[20px] p-5 shadow-primary/30 transition-all active:scale-[0.98]">
             <Phone className="w-8 h-8 text-white mb-3" />
             <div className="text-white text-left">
               <div className="text-[10px] font-bold tracking-[1px] uppercase mb-1">Hotline</div>
@@ -39,7 +39,7 @@ export function KontaktPage() {
           <div className="space-y-4">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-5 h-5 text-[#E30613]" />
+                <MapPin className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <p className="text-[11px] font-bold tracking-[0.5px] uppercase text-[#94A3B8] mb-1">Adresse</p>
@@ -55,7 +55,7 @@ export function KontaktPage() {
 
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-[#E30613]" />
+                <Phone className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <p className="text-[11px] font-bold tracking-[0.5px] uppercase text-[#94A3B8] mb-1">Telefon</p>
@@ -68,7 +68,7 @@ export function KontaktPage() {
 
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <Mail className="w-5 h-5 text-[#E30613]" />
+                <Mail className="w-5 h-5 text-primary" />
               </div>
               <div>
                 <p className="text-[11px] font-bold tracking-[0.5px] uppercase text-[#94A3B8] mb-1">E-Mail</p>
@@ -95,7 +95,7 @@ export function KontaktPage() {
         {/* Opening Hours */}
         <div className="bg-white rounded-[24px] p-6 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9] mb-6">
           <div className="flex items-center gap-3 mb-4">
-            <Clock className="w-6 h-6 text-[#E30613]" />
+            <Clock className="w-6 h-6 text-primary" />
             <h2 className="text-[20px] font-black text-black">Öffnungszeiten</h2>
           </div>
           
@@ -137,7 +137,7 @@ export function KontaktPage() {
               </label>
               <input
                 type="text"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-[#E30613] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="Ihr vollständiger Name"
               />
             </div>
@@ -148,7 +148,7 @@ export function KontaktPage() {
               </label>
               <input
                 type="email"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-[#E30613] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="ihre.email@beispiel.de"
               />
             </div>
@@ -159,7 +159,7 @@ export function KontaktPage() {
               </label>
               <input
                 type="tel"
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-[#E30613] transition-colors"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="+49 123 456789"
               />
             </div>
@@ -168,7 +168,7 @@ export function KontaktPage() {
               <label className="block text-[11px] font-bold tracking-[0.5px] uppercase text-[#94A3B8] mb-2">
                 Betreff
               </label>
-              <select className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-[#E30613] transition-colors">
+              <select className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-primary transition-colors">
                 <option>Buchungsanfrage</option>
                 <option>Allgemeine Frage</option>
                 <option>Technisches Problem</option>
@@ -183,14 +183,14 @@ export function KontaktPage() {
               </label>
               <textarea
                 rows={5}
-                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-[#E30613] transition-colors resize-none"
+                className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-[12px] px-4 py-3 text-[14px] font-semibold text-black focus:outline-none focus:border-primary transition-colors resize-none"
                 placeholder="Ihre Nachricht an uns..."
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-[#E30613] text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(227,6,19,0.3)] transition-all active:scale-[0.98]"
+              className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-primary/30 transition-all active:scale-[0.98]"
             >
               NACHRICHT SENDEN
             </button>

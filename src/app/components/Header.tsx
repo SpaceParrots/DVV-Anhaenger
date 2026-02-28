@@ -29,12 +29,12 @@ export function Header({
       <div className="md:hidden flex flex-col items-center py-4 px-5">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-[#0F172A]">
+            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-dark">
               DVV RENT
             </h1>
-            <div className="absolute -top-1 -right-2 w-2 h-2 bg-[#E30613] rounded-full" />
+            <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
-          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-[#0F172A] mt-2">
+          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-dark mt-2">
             Anhängervermietung
           </p>
         </div>
@@ -48,12 +48,12 @@ export function Header({
           className="flex flex-col cursor-pointer transition-all hover:opacity-80"
         >
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-[#0F172A]">
+            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-dark">
               DVV RENT
             </h1>
-            <div className="absolute -top-1 -right-2 w-2 h-2 bg-[#E30613] rounded-full" />
+            <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
-          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-[#0F172A] mt-1">
+          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-dark mt-1">
             Anhängervermietung
           </p>
         </button>
@@ -67,7 +67,7 @@ export function Header({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-[12px] font-black text-xs tracking-[1px] uppercase transition-all  ${
+                className={`${item.id === 'kontakt' ? 'hidden' : 'flex'} items-center gap-2 px-5 py-3 rounded-[12px] font-black text-xs tracking-[1px] uppercase transition-all  ${
                   isActive
                     ? "bg-primary text-white shadow-md hover:bg-primary/70"
                     : "text-dark hover:text-primary hover:bg-primary/10"

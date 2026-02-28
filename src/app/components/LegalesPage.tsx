@@ -1,213 +1,254 @@
-import { FileText, Shield, CreditCard, RotateCcw, Download, CheckCircle } from 'lucide-react';
-import imgLegal from 'figma:asset/993f58cc39b66f98056778a559e7c8cdcc6949d4.png';
+import React, { useEffect } from 'react';
+import { ArrowLeft, Shield, Scale, FileText, Info, Gavel, AlertTriangle } from 'lucide-react';
 
 interface LegalesPageProps {
-  onNavigate?: (page: string) => void;
+  onNavigate: (page: string, state?: any) => void;
 }
 
 export function LegalesPage({ onNavigate }: LegalesPageProps) {
-  return (
-    <div className="pb-24 md:pb-12 pt-[138px] bg-[#F8FAFC] min-h-screen">
-      <div className="px-5">
-        {/* Header */}
-        <div className="mb-8">
-          <div className="bg-[#E30613] text-white text-center py-2 px-4 rounded-t-[24px] text-[9px] font-bold tracking-[1px] uppercase">
-            Über 100.000 zufriedene Kunden vertrauen DVV Rent
-          </div>
-          <div className="bg-white rounded-b-[24px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-6">
-            <h1 className="text-[28px] font-black text-black leading-tight mb-2">
-              Alles für Ihre reibungslose Miete.
-            </h1>
-            <p className="text-[14px] font-medium text-[#64748B]">
-              Hier finden Sie alle rechtlichen Details und Voraussetzungen für Ihre Anmeldung bei DVV Rent – transparent und klar strukturiert.
-            </p>
-          </div>
-        </div>
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-        {/* Checklist */}
-        <div className="mb-8">
-          <div className="bg-[#E30613] rounded-[24px] p-6 text-white">
-            <div className="flex items-start gap-3 mb-4">
-              <CheckCircle className="w-6 h-6 flex-shrink-0 mt-1" />
-              <h2 className="text-[18px] font-black uppercase leading-tight">
-                Checkliste für die Abholung
-              </h2>
+  return (
+    <div className="bg-[#F8FAFC] min-h-screen">
+      {/* Header */}
+      
+
+      {/* Hero Section */}
+      <div className="pt-24 pb-8 px-5 bg-white border-b border-[#E2E8F0]">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-[32px] font-black text-dark tracking-[-1px] uppercase mb-2 mt-12">Impressum & <span className="text-primary">Rechtliches</span></h1>
+          <p className="text-[14px] font-medium text-slate-500">Alle gesetzlich vorgeschriebenen Informationen zu DVV RENT auf einen Blick.</p>
+        </div>
+      </div>
+
+      {/* Content Navigation (Anchor Links) */}
+      <div className="sticky top-[64px] bg-white/80 backdrop-blur-md border-b border-[#E2E8F0] z-40 overflow-x-auto scrollbar-hide">
+        <div className="flex px-5 py-3 gap-4 whitespace-nowrap max-w-4xl mx-auto">
+          {['Impressum', 'Datenschutz', 'Haftung', 'AGB', 'Widerruf'].map((item) => (
+            <a 
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-[11px] font-black uppercase tracking-wider text-slate-400 hover:text-primary transition-colors px-2"
+            >
+              {item}
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <main className="py-12 px-5 max-w-4xl mx-auto space-y-16">
+        
+        {/* Impressum Section */}
+        <section id="impressum" className="scroll-mt-32 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Scale className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-[22px] font-black uppercase text-dark tracking-tight">Impressum</h2>
+          </div>
+          
+          <div className="bg-white rounded-[32px] p-8 shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.05)] border border-[#EDF2F7] grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-6">
+              <div>
+                <p className="font-bold text-dark uppercase text-[11px] tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Anbieter
+                </p>
+                <div className="text-[15px] text-slate-600 space-y-1 font-medium">
+                  <p className="text-dark font-bold">DVV Dienstleistung, Vermietung und Verkauf</p>
+                  <p>Inhaber: Tony Schönbeck</p>
+                  <p>Volksdorfer Weg 233</p>
+                  <p>22393 Hamburg</p>
+                </div>
+              </div>
+              
+              <div>
+                <p className="font-bold text-dark uppercase text-[11px] tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Kontakt
+                </p>
+                <div className="text-[15px] text-slate-600 space-y-1 font-medium">
+                  <p>Telefon: 0171 - 856 48 67</p>
+                  <p>Fax: 032 - 121 13 72 77</p>
+                  <p>E-Mail: mail-dvv@gmx.de</p>
+                  <p>Internet: www.dvv-rent.de</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <p className="font-bold text-dark uppercase text-[11px] tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Steuernummer
+                </p>
+                <div className="text-[15px] text-slate-600 font-medium">
+                  <p>Umsatzsteuer-Identifikationsnummer / Steuernummer:</p>
+                  <p className="text-dark font-bold mt-1">50/218/03210</p>
+                </div>
+              </div>
+
+              <div>
+                <p className="font-bold text-dark uppercase text-[11px] tracking-widest mb-2 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  Inhaltlich Verantwortlich
+                </p>
+                <div className="text-[15px] text-slate-600 font-medium">
+                  <p>Gemäß § 18 Abs. 2 MStV:</p>
+                  <p className="text-dark font-bold mt-1">Tony Schönbeck</p>
+                </div>
+              </div>
+
+              <div className="bg-[#F8FAFC] rounded-2xl p-4 border border-[#EDF2F7]">
+                <p className="text-[12px] text-slate-500 leading-relaxed italic">
+                  Plattform der EU-Kommission zur Online-Streitbeilegung: 
+                  <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1">
+                    https://ec.europa.eu/consumers/odr
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Haftungsausschluss Section */}
+        <section id="haftung" className="scroll-mt-32 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <AlertTriangle className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-[22px] font-black uppercase text-dark tracking-tight">Haftungsausschluss</h2>
+          </div>
+          
+          <div className="bg-white rounded-[32px] p-8 shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.05)] border border-[#EDF2F7] space-y-8">
+            <div className="space-y-3">
+              <h3 className="text-[16px] font-black text-dark uppercase">1. Haftung für Inhalte</h3>
+              <p className="text-[14px] text-slate-600 leading-relaxed">
+                Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+              </p>
             </div>
             
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-[14px] font-bold">Gültiger Personalausweis oder Reisepass</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-[14px] font-bold">Führerschein Klasse B oder BE</p>
-                  <p className="text-[11px] text-white/80">(anhängerabhängig)</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-[14px] font-bold">Kaution (Bar oder per Stripe reserviert)</p>
-                </div>
-              </div>
+            <div className="space-y-3">
+              <h3 className="text-[16px] font-black text-dark uppercase">2. Haftung für Links</h3>
+              <p className="text-[14px] text-slate-600 leading-relaxed">
+                Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <h3 className="text-[16px] font-black text-dark uppercase">3. Urheberrecht</h3>
+              <p className="text-[14px] text-slate-600 leading-relaxed">
+                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* Process Steps */}
-        <div className="space-y-4 mb-8">
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <FileText className="w-6 h-6 text-[#E30613]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-[18px] font-black text-black">1. Voraussetzungen</h3>
-                  <span className="text-[9px] font-bold tracking-[1px] uppercase text-[#94A3B8]">Alter & Klasse B/BE</span>
-                </div>
-                <p className="text-[12px] text-[#64748B] leading-relaxed">
-                  Mindestens 18 Jahre alt, gültiger Führerschein Klasse B (für Anhänger bis 750 kg) oder BE (für schwerere Anhänger). Führerschein muss seit mindestens 1 Jahr gültig sein.
-                </p>
-              </div>
+        {/* Mietbedingungen (AGB) Section */}
+        <section id="agb" className="scroll-mt-32 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Gavel className="w-5 h-5 text-primary" />
             </div>
+            <h2 className="text-[22px] font-black uppercase text-dark tracking-tight">Mietbedingungen (AGB)</h2>
           </div>
-
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <CreditCard className="w-6 h-6 text-[#E30613]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-[18px] font-black text-black">2. Kaution & Bezahlung</h3>
-                  <span className="text-[9px] font-bold tracking-[1px] uppercase text-[#94A3B8]">Stripe / Barzahlung</span>
-                </div>
-                <p className="text-[12px] text-[#64748B] leading-relaxed">
-                  Kaution: 150-300 € (je nach Anhängertyp). Bezahlung vor Ort in bar oder vorab per Stripe. Die Kaution wird nach ordnungsgemäßer Rückgabe vollständig erstattet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <Shield className="w-6 h-6 text-[#E30613]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-[18px] font-black text-black">3. Versicherung & Haftung</h3>
-                  <span className="text-[9px] font-bold tracking-[1px] uppercase text-[#94A3B8]">Haftpflicht / Kasko</span>
-                </div>
-                <p className="text-[12px] text-[#64748B] leading-relaxed">
-                  Alle Anhänger sind haftpflichtversichert. Optionale Vollkasko-Versicherung verfügbar (10 €/Tag). Sie haften für Schäden während der Mietdauer gemäß AGB.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
-                <RotateCcw className="w-6 h-6 text-[#E30613]" />
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="text-[18px] font-black text-black">4. Rückgabe & Reinigung</h3>
-                  <span className="text-[9px] font-bold tracking-[1px] uppercase text-[#94A3B8]">Zeiten & Bedingungen</span>
-                </div>
-                <p className="text-[12px] text-[#64748B] leading-relaxed">
-                  Rückgabe bis 18 Uhr am Folgetag (bei 24h-Stationen auch später möglich). Anhänger besenrein zurückgeben. Verspätete Rückgabe: 15 € pro angefangene Stunde.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Download Section */}
-        <div className="bg-dark rounded-[24px] p-6 text-center mb-8">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Download className="w-6 h-6 text-white" />
-            <h2 className="text-[18px] font-black text-white uppercase">
-              Vollständige AGB als PDF laden
-            </h2>
-          </div>
-          <button className="w-full bg-white text-dark text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[16px] transition-all active:scale-[0.98]">
-            AGB HERUNTERLADEN
-          </button>
-          <p className="text-[10px] text-white/60 mt-3">
-            Stand: Oktober 2023. Alle Angaben ohne Gewähr. Mit Abschluss einer Buchung akzeptieren Sie unsere Allgemeinen Geschäftsbedingungen.
-          </p>
-        </div>
-
-        {/* Imprint */}
-        <div className="bg-white rounded-[24px] p-6 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
-          <h2 className="text-[20px] font-black text-black mb-4">Impressum</h2>
           
-          <div className="space-y-4 text-[12px] text-[#64748B]">
-            <div>
-              <p className="font-black text-black mb-1">DVV RENT GmbH</p>
-              <p>Reesenbütteler Redder 10</p>
-              <p>22926 Ahrensburg</p>
-              <p>Deutschland</p>
-            </div>
-
-            <div>
-              <p className="font-bold text-black mb-1">Kontakt:</p>
-              <p>Telefon: +49 (0) 4102 999 888</p>
-              <p>E-Mail: info@dvv-rent.de</p>
-              <p>Website: www.dvv-rent.de</p>
-            </div>
-
-            <div>
-              <p className="font-bold text-black mb-1">Geschäftsführung:</p>
-              <p>Tony Schönbeck</p>
-            </div>
-
-            <div>
-              <p className="font-bold text-black mb-1">Registereintrag:</p>
-              <p>Amtsgericht Lübeck</p>
-              <p>HRB 12345 HL</p>
-              <p>USt-IdNr.: DE123456789</p>
-            </div>
-
-            <div>
-              <p className="font-bold text-black mb-1">Verantwortlich für den Inhalt:</p>
-              <p>Tony Schönbeck (Anschrift wie oben)</p>
-            </div>
-
-            <div className="pt-4 border-t border-[#E2E8F0]">
-              <p className="text-[11px] font-semibold text-black mb-2">Datenschutz & Rechtliches:</p>
-              <div className="flex flex-wrap gap-2">
-                <button 
-                  onClick={() => onNavigate?.('datenschutz')}
-                  className="text-[#E30613] font-bold hover:underline transition-all active:scale-95"
-                >
-                  Datenschutzerklärung
-                </button>
-                <span>•</span>
-                <button 
-                  onClick={() => onNavigate?.('agb')}
-                  className="text-[#E30613] font-bold hover:underline transition-all active:scale-95"
-                >
-                  AGB
-                </button>
-                <span>•</span>
-                <button 
-                  onClick={() => onNavigate?.('widerrufsrecht')}
-                  className="text-[#E30613] font-bold hover:underline transition-all active:scale-95"
-                >
-                  Widerrufsrecht
-                </button>
+          <div className="bg-white rounded-[32px] p-8 shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.05)] border border-[#EDF2F7] space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
+                  <h4 className="text-[14px] font-black text-dark uppercase mb-2">1. Mindestalter & Führerschein</h4>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    Der Mieter muss mindestens 18 Jahre alt sein und einen gültigen Führerschein für die entsprechende Fahrzeugklasse besitzen. Der Führerschein ist bei Anmietung im Original vorzulegen.
+                  </p>
+                </div>
+                <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
+                  <h4 className="text-[14px] font-black text-dark uppercase mb-2">2. Kaution</h4>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    Bei Mietbeginn ist eine Kaution (Höhe modellabhängig) in bar zu hinterlegen. Diese wird bei ordnungsgemäßer Rückgabe sofort erstattet.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
+                  <h4 className="text-[14px] font-black text-dark uppercase mb-2">3. Haftung & Versicherung</h4>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    Der Mieter haftet für Schäden am Mietobjekt. Eine Reduzierung der Selbstbeteiligung durch Zusatzversicherung ist bei Transportern obligatorisch (1.000€ SB).
+                  </p>
+                </div>
+                <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
+                  <h4 className="text-[14px] font-black text-dark uppercase mb-2">4. Rückgabe</h4>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    Die Rückgabe muss während der Geschäftszeiten erfolgen. Anhänger/Transporter müssen sauber und (bei Transportern) vollgetankt zurückgegeben werden.
+                  </p>
+                </div>
               </div>
             </div>
+
+            <div className="pt-4 border-t border-slate-100">
+              <p className="text-[12px] text-slate-400 leading-relaxed">
+                Diese Kurzübersicht ersetzt nicht den vollständigen Mietvertrag. Es gelten die bei der Anmietung vor Ort ausgehängten und unterzeichneten Bedingungen.
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Datenschutz Section */}
+        <section id="datenschutz" className="scroll-mt-32 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-[22px] font-black uppercase text-dark tracking-tight">Datenschutz</h2>
+          </div>
+          
+          <div className="bg-white rounded-[32px] p-8 shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.05)] border border-[#EDF2F7] space-y-6">
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+            </p>
+            <p className="text-[14px] text-slate-600 leading-relaxed">
+              Die Nutzung unserer Website ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+            </p>
+          </div>
+        </section>
+
+        {/* Widerrufsbelehrung Section */}
+        <section id="widerruf" className="scroll-mt-32 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-primary" />
+            </div>
+            <h2 className="text-[22px] font-black uppercase text-dark tracking-tight">Widerrufsbelehrung</h2>
+          </div>
+          
+          <div className="bg-white rounded-[32px] p-8 shadow-[0px_20px_25px_-5px_rgba(0,0,0,0.05)] border border-[#EDF2F7] space-y-6">
+            <div className="space-y-4">
+              <h3 className="text-[16px] font-black text-dark uppercase">Widerrufsrecht</h3>
+              <p className="text-[14px] text-slate-600 leading-relaxed">
+                Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen. Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag des Vertragsabschlusses.
+              </p>
+              <p className="text-[14px] text-slate-600 leading-relaxed">
+                Um Ihr Widerrufsrecht auszuüben, müssen Sie uns (DVV Dienstleistung, Vermietung und Verkauf, Volksdorfer Weg 233, 22393 Hamburg, mail-dvv@gmx.de) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren.
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      {/* Footer Info */}
+      <div className="bg-dark py-12 px-5 text-center">
+        <p className="text-white/40 text-[12px] font-bold uppercase tracking-widest mb-4">DVV RENT • Hamburg</p>
+        <div className="w-8 h-1 bg-primary mx-auto mb-6 rounded-full"></div>
+        <p className="text-white/60 text-[11px] leading-relaxed max-w-lg mx-auto">
+          Stand: Februar 2026. Alle Angaben ohne Gewähr. Änderungen vorbehalten.
+          <br />
+          Bei Fragen kontaktieren Sie uns bitte direkt telefonisch.
+        </p>
       </div>
     </div>
   );

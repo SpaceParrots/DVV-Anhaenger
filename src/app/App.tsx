@@ -10,20 +10,35 @@ import { KontaktPage } from "./components/KontaktPage";
 import { DatenschutzPage } from "./components/DatenschutzPage";
 import { AGBPage } from "./components/AGBPage";
 import { WiderrufsrechtPage } from "./components/WiderrufsrechtPage";
+import { Footer } from "./components/Footer";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("home");
+  const [navigationState, setNavigationState] = useState<any>(null);
+
+  const handleNavigate = (page: string, state?: any) => {
+    setCurrentPage(page);
+    setNavigationState(state);
+
+    // Scroll to top unless we're navigating to a specific product/station highlight
+    if (!state?.vehicle) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'auto' // Use 'auto' for an immediate jump when switching pages
+      });
+    }
+  };
 
   const renderPage = () => {
     switch (currentPage) {
       case "home":
-        return <HomePage />;
+        return <HomePage onNavigate={handleNavigate} />;
       case "stationen":
-        return <StationenPage />;
+        return <StationenPage highlightedVehicle={navigationState?.vehicle} />;
       case "fuhrpark":
-        return <FuhrparkPage />;
+        return <FuhrparkPage onNavigate={handleNavigate} />;
       case "legales":
-        return <LegalesPage onNavigate={setCurrentPage} />;
+        return <LegalesPage onNavigate={handleNavigate} />;
       case "datenschutz":
         return (
           <DatenschutzPage
@@ -43,7 +58,7 @@ export default function App() {
       case "kontakt":
         return <KontaktPage />;
       default:
-        return <HomePage />;
+        return <HomePage onNavigate={handleNavigate} />;
     }
   };
 
@@ -52,13 +67,16 @@ export default function App() {
       <TopBar />
       <Header
         currentPage={currentPage}
-        onNavigate={setCurrentPage}
+        onNavigate={handleNavigate}
       />
 
-      <div className="continer">{renderPage()}</div>
+      <div className="container mx-auto">
+        {renderPage()}
+        <Footer onNavigate={handleNavigate} />
+      </div>
       <BottomNav
         currentPage={currentPage}
-        onNavigate={setCurrentPage}
+        onNavigate={handleNavigate}
       />
 
       {/* Hide scrollbar globally */}

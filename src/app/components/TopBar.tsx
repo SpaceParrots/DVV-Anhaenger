@@ -24,7 +24,7 @@ export function TopBar() {
         {announcements.map((announcement, index) => (
           <div
             key={index}
-            className={`absolute whitespace-nowrap text-[10px] font-bold tracking-[1px] uppercase transition-all duration-500 ease-in-out ${
+            className={`absolute whitespace-nowrap text-[10px] font-bold tracking-widest uppercase transition-all duration-500 ease-in-out ${
               index === currentIndex
                 ? 'opacity-100 translate-y-0'
                 : index < currentIndex

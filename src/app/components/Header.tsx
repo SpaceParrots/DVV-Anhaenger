@@ -24,17 +24,17 @@ export function Header({
   ];
 
   return (
-    <div className="fixed top-[35px] left-0 right-0 bg-white z-40 border-b border-[#F3F4F6]">
+    <div className="fixed top-[35px] left-0 right-0 bg-white z-40 border-b border-gray-100">
       {/* Mobile Header - Centered Logo */}
       <div className="md:hidden flex flex-col items-center py-4 px-5">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-dark">
+            <h1 className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark">
               DVV RENT
             </h1>
             <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
-          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-dark mt-2">
+          <p className="text-[9px] font-black tracking-widest uppercase text-dark mt-2">
             Anhängervermietung
           </p>
         </div>
@@ -48,12 +48,12 @@ export function Header({
           className="flex flex-col cursor-pointer transition-all hover:opacity-80"
         >
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-[32px] tracking-[-1.6px] text-dark">
+            <h1 className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark">
               DVV RENT
             </h1>
             <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
-          <p className="text-[9px] font-black tracking-[1.8px] uppercase text-dark mt-1">
+          <p className="text-[9px] font-black tracking-widest uppercase text-dark mt-1">
             Anhängervermietung
           </p>
         </button>
@@ -67,7 +67,7 @@ export function Header({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`${item.id === 'kontakt' ? 'hidden' : 'flex'} items-center gap-2 px-5 py-3 rounded-[12px] font-black text-xs tracking-[1px] uppercase transition-all  ${
+                className={`${item.id === 'kontakt' ? 'hidden' : 'flex'} items-center gap-2 px-5 py-3 rounded-xl font-black text-xs tracking-widest uppercase transition-all  ${
                   isActive
                     ? "bg-primary text-white shadow-md hover:bg-primary/70"
                     : "text-dark hover:text-primary hover:bg-primary/10"

@@ -6,13 +6,13 @@ interface AGBPageProps {
 
 export function AGBPage({ onBack }: AGBPageProps) {
   return (
-    <div className="pb-24 md:pb-12 pt-[138px] bg-[#F8FAFC] min-h-screen">
+    <div className="pb-24 md:pb-12 pt-[138px] bg-slate-50 min-h-screen">
       <div className="px-5">
         {/* Back Button */}
         {onBack && (
           <button
             onClick={onBack}
-            className="flex items-center gap-2 text-primary text-[12px] font-black tracking-[1px] uppercase mb-6 transition-all active:scale-95"
+            className="flex items-center gap-2 text-primary text-xs font-black tracking-widest uppercase mb-6 transition-all active:scale-95"
           >
             <ArrowLeft className="w-4 h-4" />
             Zurück
@@ -21,22 +21,22 @@ export function AGBPage({ onBack }: AGBPageProps) {
 
         {/* Header */}
         <div className="mb-8">
-          <div className="bg-primary text-white text-center py-2 px-4 rounded-t-[24px] text-[9px] font-bold tracking-[1px] uppercase">
+          <div className="bg-primary text-white text-center py-2 px-4 rounded-t-3xl text-[9px] font-bold tracking-widest uppercase">
             Transparente Mietbedingungen
           </div>
-          <div className="bg-white rounded-b-[24px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] p-6">
+          <div className="bg-white rounded-b-3xl shadow-sm p-6">
             <div className="flex items-start gap-4 mb-3">
               <FileText className="w-8 h-8 text-primary flex-shrink-0" />
               <div>
                 <h1 className="text-[28px] font-black text-black leading-tight mb-2">
                   Allgemeine Geschäftsbedingungen
                 </h1>
-                <p className="text-[14px] font-medium text-[#64748B]">
+                <p className="text-sm font-medium text-slate-500">
                   Diese Allgemeinen Geschäftsbedingungen (AGB) regeln die Vermietung von Anhängern durch die DVV RENT GmbH an Privat- und Geschäftskunden.
                 </p>
               </div>
             </div>
-            <p className="text-[11px] text-[#94A3B8] mt-4">
+            <p className="text-[11px] text-slate-400 mt-4">
               Stand: Februar 2026
             </p>
           </div>
@@ -45,14 +45,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
         {/* Content Sections */}
         <div className="space-y-4 mb-8">
           {/* Section 1 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <FileText className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§1 Geltungsbereich</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-2">
+                <h3 className="text-lg font-black text-black mb-3">§1 Geltungsbereich</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-2">
                   <p>Diese AGB gelten für alle Mietverhältnisse zwischen der DVV RENT GmbH (im Folgenden "Vermieter") und dem Mieter bezüglich der Vermietung von Anhängern.</p>
                   <p>Abweichende Bedingungen des Mieters werden nicht anerkannt, es sei denn, der Vermieter stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
                 </div>
@@ -61,14 +61,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 2 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <CheckCircle className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§2 Vertragsabschluss und Mietvoraussetzungen</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-3">
+                <h3 className="text-lg font-black text-black mb-3">§2 Vertragsabschluss und Mietvoraussetzungen</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-3">
                   <div>
                     <p className="font-bold text-black mb-1">2.1 Mietvoraussetzungen</p>
                     <p>Der Mieter muss folgende Voraussetzungen erfüllen:</p>
@@ -89,14 +89,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 3 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <Clock className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§3 Mietdauer und Mietpreis</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-3">
+                <h3 className="text-lg font-black text-black mb-3">§3 Mietdauer und Mietpreis</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-3">
                   <div>
                     <p className="font-bold text-black mb-1">3.1 Mietdauer</p>
                     <p>Die Mindestmietdauer beträgt 24 Stunden. Die Miete beginnt mit der Übergabe des Anhängers und endet mit dessen ordnungsgemäßer Rückgabe.</p>
@@ -121,14 +121,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 4 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <AlertCircle className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§4 Pflichten des Mieters</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-2">
+                <h3 className="text-lg font-black text-black mb-3">§4 Pflichten des Mieters</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-2">
                   <p className="font-bold text-black">Der Mieter verpflichtet sich:</p>
                   <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>Den Anhänger pfleglich und verkehrssicher zu behandeln</li>
@@ -144,14 +144,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 5 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <Shield className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§5 Versicherung und Haftung</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-3">
+                <h3 className="text-lg font-black text-black mb-3">§5 Versicherung und Haftung</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-3">
                   <div>
                     <p className="font-bold text-black mb-1">5.1 Haftpflichtversicherung</p>
                     <p>Alle Anhänger sind haftpflichtversichert. Die Deckungssumme beträgt 100 Mio. € für Personen- und Sachschäden.</p>
@@ -178,14 +178,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 6 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <Clock className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§6 Rückgabe</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-3">
+                <h3 className="text-lg font-black text-black mb-3">§6 Rückgabe</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-3">
                   <div>
                     <p className="font-bold text-black mb-1">6.1 Rückgabetermin</p>
                     <p>Der Anhänger ist zum vereinbarten Zeitpunkt zurückzugeben. Die regulären Rückgabezeiten sind:</p>
@@ -209,14 +209,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 7 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <AlertCircle className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§7 Kündigung und Stornierung</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-3">
+                <h3 className="text-lg font-black text-black mb-3">§7 Kündigung und Stornierung</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-3">
                   <div>
                     <p className="font-bold text-black mb-1">7.1 Stornierung durch den Mieter</p>
                     <p>Kostenlose Stornierung bis 24 Stunden vor Mietbeginn. Bei kurzfristigerer Stornierung wird 50% des Mietpreises berechnet.</p>
@@ -236,14 +236,14 @@ export function AGBPage({ onBack }: AGBPageProps) {
           </div>
 
           {/* Section 8 */}
-          <div className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]">
+          <div className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100">
             <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-[#FEE6E6] rounded-[12px] flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 bg-primary-light rounded-xl flex items-center justify-center flex-shrink-0">
                 <FileText className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-[18px] font-black text-black mb-3">§8 Schlussbestimmungen</h3>
-                <div className="text-[12px] text-[#64748B] leading-relaxed space-y-2">
+                <h3 className="text-lg font-black text-black mb-3">§8 Schlussbestimmungen</h3>
+                <div className="text-xs text-slate-500 leading-relaxed space-y-2">
                   <p>Sollten einzelne Bestimmungen dieser AGB unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
                   <p className="font-bold text-black mt-2">Es gilt das Recht der Bundesrepublik Deutschland.</p>
                   <p>Gerichtsstand ist Ahrensburg, sofern der Mieter Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen ist.</p>
@@ -254,17 +254,17 @@ export function AGBPage({ onBack }: AGBPageProps) {
         </div>
 
         {/* Download CTA */}
-        <div className="bg-dark rounded-[24px] p-6 text-center">
+        <div className="bg-dark rounded-3xl p-6 text-center">
           <div className="flex items-center justify-center gap-2 mb-4">
             <FileText className="w-6 h-6 text-white" />
-            <h2 className="text-[18px] font-black text-white uppercase">
+            <h2 className="text-lg font-black text-white uppercase">
               AGB als PDF herunterladen
             </h2>
           </div>
-          <p className="text-[12px] text-white/80 mb-4">
+          <p className="text-xs text-white/80 mb-4">
             Laden Sie die vollständigen AGB als PDF-Datei herunter.
           </p>
-          <button className="w-full bg-white text-dark text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[16px] transition-all active:scale-[0.98]">
+          <button className="w-full bg-white text-dark text-xs font-black tracking-wider uppercase py-4 rounded-2xl transition-all active:scale-[0.98]">
             PDF HERUNTERLADEN
           </button>
         </div>

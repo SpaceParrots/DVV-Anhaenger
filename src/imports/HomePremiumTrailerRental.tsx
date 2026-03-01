@@ -1,5 +1,5 @@
 import svgPaths from "./svg-ksl0yiynh5";
-import imgTonySchonbeck from "@/assets/add4571d2aebccb37cf94e05588b80245bfa0384.png";
+import imgTonySchonbeck from "figma:asset/add4571d2aebccb37cf94e05588b80245bfa0384.png";
 
 function Container1() {
   return (
@@ -95,7 +95,7 @@ function TonySchonbeck() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="Tony Schönbeck">
       <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden pointer-events-none">
-        <img alt="Tony Schönbeck, Inhaber von DVV RENT" className="absolute left-0 max-w-none size-full top-0" src={imgTonySchonbeck} />
+        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgTonySchonbeck} />
       </div>
     </div>
   );

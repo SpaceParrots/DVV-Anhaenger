@@ -1,4 +1,3 @@
-import { Helmet } from "react-helmet-async";
 import {
   Phone,
   MessageCircle,
@@ -19,13 +18,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 // Trailer Images
-import heroTrailerImg from "@/assets/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
-import trailer750FlachImg from "@/assets/DVVRENT_Trailer_750kg_Flachplane.png";
-import trailer750HochImg from "@/assets/DVV_RENT_Trailer_750kg_Hochplane.png";
-import trailer1350Img from "@/assets/DVV_RENT_Trailer_1350kg_Hochplane.png";
-import trailer2700PImg from "@/assets/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
-import trailer2700AImg from "@/assets/DVV_RENT_Trailer_Autotransporter_2700kg.png";
-import vanImg from '@/assets/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
+import heroTrailerImg from "figma:asset/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
+import trailer750FlachImg from "figma:asset/DVVRENT_Trailer_750kg_Flachplane.png";
+import trailer750HochImg from "figma:asset/DVV_RENT_Trailer_750kg_Hochplane.png";
+import trailer1350Img from "figma:asset/DVV_RENT_Trailer_1350kg_Hochplane.png";
+import trailer2700PImg from "figma:asset/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
+import trailer2700AImg from "figma:asset/DVV_RENT_Trailer_Autotransporter_2700kg.png";
+import vanImg from 'figma:asset/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
 
 import { allStationsData } from "../data/stations";
 import { ProcessSteps } from "./ProcessSteps";
@@ -67,7 +66,7 @@ const fleetData = [
   {
     name: '2700kg Plane',
     tag: 'PLATZWUNDER',
-    tagColor: 'bg-emerald-600',
+    tagColor: 'bg-[#059669]',
     license: 'Führerschein BE • Gebremst',
     price: '60,00',
     image: trailer2700PImg,
@@ -225,27 +224,19 @@ export function HomePage({ onNavigate }: HomePageProps) {
   };
 
   return (
-    <div className="pb-24 md:pb-12 pt-[158px] bg-slate-50 min-h-screen">
-      <Helmet>
-        <title>DVV RENT - Anhänger & Transporter mieten in Norddeutschland</title>
-        <meta name="description" content="Anhänger und Transporter mieten ab 15 Euro. Über 50 Fahrzeuge an 16+ Standorten in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
-        <meta property="og:title" content="DVV RENT - Anhänger & Transporter mieten in Norddeutschland" />
-        <meta property="og:description" content="Anhänger und Transporter mieten ab 15 Euro. Über 50 Fahrzeuge an 16+ Standorten in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="de_DE" />
-      </Helmet>
+    <div className="pb-24 md:pb-12 pt-[158px] bg-[#F8FAFC] min-h-screen">
       {/* Hero Card */}
       <div className="px-5 mb-8">
         <div className="flex flex-col md:flex-row md:min-h-[420px]">
           {/* Left: Text Content */}
           <div className="flex flex-col justify-center flex-1 md:p-10 lg:p-14">
             <div className="mb-2">
-              <span className="inline-block bg-primary text-white text-[10px] font-black tracking-widest uppercase px-3 py-1.5 rounded-lg">
+              <span className="inline-block bg-primary text-white text-[10px] font-black tracking-[1.5px] uppercase px-3 py-1.5 rounded-[8px]">
                 Nr. 1 in Norddeutschland
               </span>
             </div>
-            <h1 className="font-black text-dark uppercase tracking-tighter leading-[1.1] mb-4 text-2xl">Der schnellste Weg zuR<br /><span className="text-primary">Transportlösung</span></h1>
-            <p className="text-sm lg:text-base text-slate-500 leading-relaxed mb-6 max-w-[480px]">
+            <h1 className="font-black text-dark uppercase tracking-[-1px] leading-[1.1] mb-4 text-[24px]">Der schnellste Weg zuR<br /><span className="text-primary">Transportlösung</span></h1>
+            <p className="text-[14px] lg:text-[16px] text-[#64748B] leading-relaxed mb-6 max-w-[480px]">
               DVV RENT ist Ihr zuverlässiger Partner für
               Anhängervermietung in Hamburg, Schleswig-Holstein
               und Mecklenburg-Vorpommern. Hochwertige
@@ -260,10 +251,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-center gap-2 bg-slate-100 px-3 py-2 rounded-[10px]"
+                  className="flex items-center gap-2 bg-[#F1F5F9] px-3 py-2 rounded-[10px]"
                 >
                   <CheckCircle className="w-3.5 h-3.5 text-primary" />
-                  <span className="text-[11px] font-bold text-dark uppercase tracking-wide">
+                  <span className="text-[11px] font-bold text-dark uppercase tracking-[0.5px]">
                     {item}
                   </span>
                 </div>
@@ -289,9 +280,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
               {/* Desktop-only overlay button */}
               <div className="absolute bottom-7 right-7 left-7 hidden md:flex p-5 md:p-6 z-10">
-                <button
+                <button 
                   onClick={() => onNavigate("stationen")}
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <MapPin className="w-4 h-4" />
                   MIETSTATION FINDEN
@@ -299,9 +290,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
             </div>
             <div className="md:hidden p-7 md:p-6">
-              <button
+              <button 
                 onClick={() => onNavigate("stationen")}
-                className="w-full bg-primary hover:bg-primary/90 text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full bg-primary text-white font-black text-[13px] tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 <MapPin className="w-4 h-4" />
                 MIETSTATION FINDEN
@@ -313,11 +304,11 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       {/* WOW Banner */}
       <div className="px-5 mb-8">
-        <div className="bg-dark rounded-3xl p-6 text-center">
-          <div className="text-[11px] font-bold tracking-widest uppercase text-white/60 mb-2">
+        <div className="bg-dark rounded-[24px] p-6 text-center">
+          <div className="text-[11px] font-bold tracking-[1.5px] uppercase text-white/60 mb-2">
             Qualität die überzeugt
           </div>
-          <div className="text-base font-black tracking-tight text-white uppercase leading-tight">
+          <div className="text-[16px] font-black tracking-[-0.5px] text-white uppercase leading-tight">
             DVV VERTRAUT AUF
             <br />
             QUALITÄTSANHÄNGER VON
@@ -330,10 +321,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
       {/* Locations Section */}
       <div className="px-5 mb-8">
         <div className="mb-6">
-          <h2 className="text-2xl font-black text-dark tracking-tight mb-1">
+          <h2 className="text-[24px] font-black text-dark tracking-[-0.6px] mb-1">
             Unsere Standorte
           </h2>
-          <p className="text-xs font-bold text-slate-500">
+          <p className="text-[12px] font-bold text-[#64748B]">
             Wählen Sie Ihre Station für die Buchung
           </p>
         </div>
@@ -342,20 +333,20 @@ export function HomePage({ onNavigate }: HomePageProps) {
           {allStationsData.slice(0, 6).map((location, index) => (
             <div
               key={index}
-              className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100"
+              className="bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border border-[#F1F5F9]"
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="text-base font-black text-dark leading-tight mb-1">
+                  <h3 className="text-[16px] font-black text-dark leading-tight mb-1">
                     {location.name}
                   </h3>
-                  <p className="text-[10px] font-bold tracking-wide uppercase text-slate-400">
+                  <p className="text-[10px] font-bold tracking-[0.5px] uppercase text-[#94A3B8]">
                     {location.address}
                   </p>
                 </div>
                 {location.tag && (
-                  <div className={`${location.tagColor || 'bg-slate-100 text-dark'} px-2 py-1 rounded-xl`}>
-                    <span className="text-[9px] font-black tracking-wide uppercase">
+                  <div className={`${location.tagColor || 'bg-[#F1F5F9] text-dark'} px-2 py-1 rounded-[12px]`}>
+                    <span className="text-[9px] font-black tracking-[0.5px] uppercase">
                       {location.tag}
                     </span>
                   </div>
@@ -366,7 +357,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 {location.items.map((trailer, i) => (
                   <div
                     key={i}
-                    className="bg-slate-100 px-2.5 py-1.5 rounded-lg"
+                    className="bg-[#F1F5F9] px-2.5 py-1.5 rounded-[8px]"
                   >
                     <span className="text-[9px] font-bold text-dark whitespace-nowrap">
                       {trailer}
@@ -378,7 +369,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
               <div className="flex gap-2">
                 <a
                   href={`tel:${location.phoneClean}`}
-                  className="flex-1 bg-primary text-white text-[10px] font-black tracking-widest uppercase py-3 rounded-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  className="flex-1 bg-primary text-white text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <Phone className="w-3 h-3" />
                   ANRUFEN
@@ -387,7 +378,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address + ", " + location.city)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-slate-100 text-dark text-[10px] font-black tracking-widest uppercase py-3 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  className="flex-1 bg-[#F1F5F9] text-dark text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <MapPin className="w-3 h-3" />
                   ANFAHRT
@@ -399,7 +390,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
         <button 
           onClick={() => onNavigate("stationen")}
-          className="w-full mt-4 text-slate-400 text-[11px] font-black tracking-widest uppercase py-3 transition-colors hover:text-primary"
+          className="w-full mt-4 text-[#94A3B8] text-[11px] font-black tracking-[1px] uppercase py-3 transition-colors hover:text-primary"
         >
           ALLE 16 STANDORTE ANZEIGEN →
         </button>
@@ -413,7 +404,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="px-5 mb-6">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-xl font-black text-black tracking-tight uppercase leading-tight">
+              <h2 className="text-[20px] font-black text-black tracking-[-0.5px] uppercase leading-tight">
                 UNSERE
                 <br />
                 ANHÄNGER
@@ -421,7 +412,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
             <div className="w-2 h-2 rounded-full bg-primary" />
             <div className="flex-1 text-right">
-              <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400 leading-tight">
+              <p className="text-[10px] font-bold tracking-[1px] uppercase text-[#9CA3AF] leading-tight">
                 {fleetData.length} Modelle
                 <br />
                 verfügbar
@@ -457,9 +448,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 } : {}}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
                 onClick={() => onNavigate("stationen", { vehicle: trailer.name })}
-                className={`bg-white rounded-3xl overflow-hidden border-2 h-full flex flex-col transition-colors cursor-pointer ${currentSlide === index ? 'border-primary' : 'border-gray-100'}`}
+                className={`bg-white rounded-[24px] overflow-hidden border-2 h-full flex flex-col transition-colors cursor-pointer ${currentSlide === index ? 'border-primary' : 'border-[#F3F4F6]'}`}
               >
-                <div className="relative h-40 bg-gradient-to-b from-[#F0F2F5] to-slate-200 flex-shrink-0">
+                <div className="relative h-40 bg-gradient-to-b from-[#F0F2F5] to-[#E2E8F0] flex-shrink-0">
                   <div className="absolute inset-[60%_0_0_0] bg-gradient-to-b from-transparent to-black/10" />
                   <ImageWithFallback
                     src={trailer.image}
@@ -467,7 +458,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     className="w-full h-full object-cover"
                   />
                   <div
-                    className={`absolute top-3 left-4 ${trailer.tagColor} px-3 py-1 rounded-lg shadow-md`}
+                    className={`absolute top-3 left-4 ${trailer.tagColor} px-3 py-1 rounded-[8px] shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1)]`}
                   >
                     <span className="text-xs font-black uppercase text-white">
                       {trailer.tag}
@@ -476,24 +467,24 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-xl font-black text-black tracking-tighter uppercase leading-tight mb-1">
+                  <h3 className="text-[20px] font-black text-black tracking-[-1px] uppercase leading-tight mb-1">
                     {trailer.name}
                   </h3>
-                  <p className="text-[11px] font-bold tracking-wider uppercase text-gray-400 mb-2">
+                  <p className="text-[11px] font-bold tracking-[1.1px] uppercase text-[#9CA3AF] mb-2">
                     {trailer.license}
                   </p>
                   <div className="flex items-baseline gap-1 mb-4">
-                    <span className="text-[26px] font-black text-black tracking-tighter leading-none">
+                    <span className="text-[26px] font-black text-black tracking-[-1.3px] leading-none">
                       {trailer.price} €
                     </span>
-                    <span className="text-[11px] font-bold text-gray-500">
+                    <span className="text-[11px] font-bold text-[#6B7280]">
                       /Tag
                     </span>
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 mb-4 flex-grow">
-                    <div className="bg-gray-50 border border-gray-100 rounded-xl p-3">
-                      <div className="text-[8px] font-bold tracking-wider uppercase text-gray-400 mb-2">
+                    <div className="bg-[#F9FAFB] border border-[#F3F4F6] rounded-[12px] p-3">
+                      <div className="text-[8px] font-bold tracking-[0.8px] uppercase text-[#9CA3AF] mb-2">
                         Technik
                       </div>
                       <div className="space-y-1 text-[11px] font-bold text-black">
@@ -512,8 +503,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
                       </div>
                     </div>
 
-                    <div className="bg-gray-50 border border-gray-100 rounded-xl p-3">
-                      <div className="text-[8px] font-bold tracking-wider uppercase text-gray-400 mb-2">
+                    <div className="bg-[#F9FAFB] border border-[#F3F4F6] rounded-[12px] p-3">
+                      <div className="text-[8px] font-bold tracking-[0.8px] uppercase text-[#9CA3AF] mb-2">
                         Maße (Innen)
                       </div>
                       <div className="space-y-1 text-[11px] font-bold text-black">
@@ -542,12 +533,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   {/* Quick Info Badge for Home */}
                   <div className="flex items-center gap-2 mb-4">
                     <Clock className="w-3.5 h-3.5 text-primary" />
-                    <span className="text-[10px] font-black text-dark uppercase tracking-wide">4h Miete ab {trailer.h4Price}€</span>
+                    <span className="text-[10px] font-black text-dark uppercase tracking-[0.5px]">4h Miete ab {trailer.h4Price}€</span>
                   </div>
 
-                  <button
+                  <button 
                     onClick={() => onNavigate("stationen", { vehicle: trailer.name })}
-                    className="w-full bg-primary hover:bg-primary/90 text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                    className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                   >
                     STATION FINDEN
                     <MapPin className="w-4 h-4" />
@@ -563,7 +554,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="flex items-center justify-between">
             <button
               onClick={prevSlide}
-              aria-label="Vorheriger Anhänger"
               className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronLeft
@@ -577,12 +567,10 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 <button
                   key={index}
                   onClick={() => scrollToSlide(index)}
-                  aria-label={`Anhänger ${index + 1} von ${fleetData.length}`}
-                  aria-current={currentSlide === index ? "true" : undefined}
                   className={`transition-all duration-300 rounded-full ${
                     currentSlide === index
                       ? "w-8 h-2 bg-primary"
-                      : "w-2 h-2 bg-slate-200 hover:bg-slate-300"
+                      : "w-2 h-2 bg-[#E2E8F0] hover:bg-[#CBD5E1]"
                   }`}
                 />
               ))}
@@ -590,7 +578,6 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
             <button
               onClick={nextSlide}
-              aria-label="Nächster Anhänger"
               className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronRight
@@ -606,14 +593,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
       <div className="px-5 mb-12">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h2 className="text-xl font-black text-black tracking-tight uppercase leading-tight">
+            <h2 className="text-[20px] font-black text-black tracking-[-0.5px] uppercase leading-tight">
               NEU IM FUHRPARK:
               <br />
               <span className="text-primary">TRANSPORTER</span>
             </h2>
           </div>
           <div className="flex-1 text-right">
-            <p className="text-[10px] font-bold tracking-widest uppercase text-gray-400 leading-tight">
+            <p className="text-[10px] font-bold tracking-[1px] uppercase text-[#9CA3AF] leading-tight">
               Iveco Daily 3,5t
               <br />
               L & XL
@@ -631,50 +618,50 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 boxShadow: '0 20px 25px -5px rgba(239, 68, 68, 0.1)'
               }}
               onClick={() => onNavigate("stationen", { vehicle: van.name })}
-              className="bg-white rounded-[32px] overflow-hidden shadow-lg border-2 border-slate-100 transition-all duration-300 cursor-pointer"
+              className="bg-white rounded-[32px] overflow-hidden shadow-lg border-2 border-[#F1F5F9] transition-all duration-300 cursor-pointer"
             >
-              <div className="relative h-48 md:h-64 bg-gradient-to-b from-[#F0F2F5] to-slate-200">
+              <div className="relative h-48 md:h-64 bg-gradient-to-b from-[#F0F2F5] to-[#E2E8F0]">
                 <ImageWithFallback src={vanImg} alt={van.name} className="w-full h-full object-cover" />
                 <div className={`absolute top-4 left-5 ${van.tagColor} px-4 py-1.5 rounded-[10px] shadow-lg`}>
-                  <span className="text-[11px] font-black tracking-widest uppercase text-white">{van.tag}</span>
+                  <span className="text-[11px] font-black tracking-[1px] uppercase text-white">{van.tag}</span>
                 </div>
                 {/* L/XL Badge overlay */}
-                <div className="absolute top-4 right-5 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-[10px] border border-slate-200">
-                  <span className="text-sm font-black text-dark tracking-widest">GR. {van.id.toUpperCase()}</span>
+                <div className="absolute top-4 right-5 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-[10px] border border-[#E2E8F0]">
+                  <span className="text-[14px] font-black text-dark tracking-[1px]">GR. {van.id.toUpperCase()}</span>
                 </div>
               </div>
 
               <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-2xl font-black text-dark tracking-tighter uppercase leading-tight mb-1">{van.name}</h3>
+                    <h3 className="text-[22px] font-black text-dark tracking-[-1px] uppercase leading-tight mb-1">{van.name}</h3>
                     <div className="flex flex-wrap gap-2 mt-2">
-                      <span className="bg-slate-100 text-[9px] font-bold text-slate-500 px-2 py-1 rounded-md uppercase tracking-wide">{van.specs.transmission}</span>
-                      <span className="bg-slate-100 text-[9px] font-bold text-slate-500 px-2 py-1 rounded-md uppercase tracking-wide">{van.specs.extra}</span>
-                      <span className="bg-primary/10 text-[9px] font-bold text-primary px-2 py-1 rounded-md uppercase tracking-wide">Ladelänge {van.dimensions.length}</span>
+                      <span className="bg-[#F1F5F9] text-[9px] font-bold text-[#64748B] px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">{van.specs.transmission}</span>
+                      <span className="bg-[#F1F5F9] text-[9px] font-bold text-[#64748B] px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">{van.specs.extra}</span>
+                      <span className="bg-primary/10 text-[9px] font-bold text-primary px-2 py-1 rounded-[6px] uppercase tracking-[0.5px]">Ladelänge {van.dimensions.length}</span>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-[10px] font-bold text-slate-400 uppercase mb-1">Ab</div>
-                    <div className="text-2xl font-black text-dark tracking-tighter leading-none">{van.h4Price} €</div>
-                    <div className="text-[10px] font-bold text-gray-500 mt-1">/ 4 Std.</div>
+                    <div className="text-[10px] font-bold text-[#94A3B8] uppercase mb-1">Ab</div>
+                    <div className="text-[24px] font-black text-dark tracking-[-1.5px] leading-none">{van.h4Price} €</div>
+                    <div className="text-[10px] font-bold text-[#6B7280] mt-1">/ 4 Std.</div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
                   {/* Mo - Do Pricing */}
-                  <div className="bg-slate-50 rounded-[20px] p-4 border border-slate-100">
+                  <div className="bg-[#F8FAFC] rounded-[20px] p-4 border border-[#F1F5F9]">
                     <div className="flex items-center gap-2 mb-3">
                       <Calendar className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-[10px] font-black text-dark tracking-widest uppercase">Mo. - Do. Tarife</span>
+                      <span className="text-[10px] font-black text-dark tracking-[1px] uppercase">Mo. - Do. Tarife</span>
                     </div>
                     <div className="space-y-2">
                       {van.pricing.moDo.map((p, i) => (
-                        <div key={i} className="flex justify-between items-center text-xs border-b border-dotted border-slate-200 pb-1 last:border-0">
-                          <span className="font-bold text-slate-500">{p.label}</span>
+                        <div key={i} className="flex justify-between items-center text-[12px] border-b border-dotted border-[#E2E8F0] pb-1 last:border-0">
+                          <span className="font-bold text-[#64748B]">{p.label}</span>
                           <div className="text-right">
                             <span className="font-black text-dark">{p.price} €</span>
-                            <span className="text-[9px] font-bold text-slate-400 ml-2">({p.km} km frei)</span>
+                            <span className="text-[9px] font-bold text-[#94A3B8] ml-2">({p.km} km frei)</span>
                           </div>
                         </div>
                       ))}
@@ -682,18 +669,18 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   </div>
 
                   {/* Fr - So Pricing */}
-                  <div className="bg-slate-50 rounded-[20px] p-4 border border-slate-100">
+                  <div className="bg-[#F8FAFC] rounded-[20px] p-4 border border-[#F1F5F9]">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock className="w-3.5 h-3.5 text-primary" />
-                      <span className="text-[10px] font-black text-dark tracking-widest uppercase">Fr. - So. Tarife</span>
+                      <span className="text-[10px] font-black text-dark tracking-[1px] uppercase">Fr. - So. Tarife</span>
                     </div>
                     <div className="space-y-2">
                       {van.pricing.frSo.map((p, i) => (
-                        <div key={i} className="flex justify-between items-center text-xs border-b border-dotted border-slate-200 pb-1 last:border-0">
-                          <span className="font-bold text-slate-500">{p.label}</span>
+                        <div key={i} className="flex justify-between items-center text-[12px] border-b border-dotted border-[#E2E8F0] pb-1 last:border-0">
+                          <span className="font-bold text-[#64748B]">{p.label}</span>
                           <div className="text-right">
                             <span className="font-black text-dark">{p.price} €</span>
-                            <span className="text-[9px] font-bold text-slate-400 ml-2">({p.km} km frei)</span>
+                            <span className="text-[9px] font-bold text-[#94A3B8] ml-2">({p.km} km frei)</span>
                           </div>
                         </div>
                       ))}
@@ -702,36 +689,36 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 mb-6">
-                  <div className="bg-primary/5 border border-primary/20 rounded-2xl p-3 text-center">
+                  <div className="bg-primary/5 border border-primary/20 rounded-[16px] p-3 text-center">
                     <div className="text-[9px] font-bold text-primary uppercase mb-1">Wochenendtarif</div>
-                    <div className="text-sm font-black text-dark">3 Tage / 1500 km</div>
-                    <div className="text-base font-black text-primary mt-1">{van.id === 'l' ? '399,- €' : '449,- €'}</div>
+                    <div className="text-[14px] font-black text-dark">3 Tage / 1500 km</div>
+                    <div className="text-[16px] font-black text-primary mt-1">{van.id === 'l' ? '399,- €' : '449,- €'}</div>
                   </div>
-                  <div className="bg-dark border border-dark rounded-2xl p-3 text-center">
+                  <div className="bg-dark border border-dark rounded-[16px] p-3 text-center">
                     <div className="text-[9px] font-bold text-white/60 uppercase mb-1">Wochentarif</div>
-                    <div className="text-sm font-black text-white">7 Tage / 2500 km</div>
-                    <div className="text-base font-black text-primary mt-1">{van.id === 'l' ? '749,- €' : '799,- €'}</div>
+                    <div className="text-[14px] font-black text-white">7 Tage / 2500 km</div>
+                    <div className="text-[16px] font-black text-primary mt-1">{van.id === 'l' ? '749,- €' : '799,- €'}</div>
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-4 items-center justify-between py-4 border-t border-slate-100 mb-6">
+                <div className="flex flex-wrap gap-4 items-center justify-between py-4 border-t border-[#F1F5F9] mb-6">
                   <div className="flex items-center gap-2">
-                    <Gauge className="w-4 h-4 text-slate-400" />
-                    <span className="text-[11px] font-bold text-slate-500">Extra: 0,25€ / KM</span>
+                    <Gauge className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Extra: 0,25€ / KM</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Package className="w-4 h-4 text-slate-400" />
-                    <span className="text-[11px] font-bold text-slate-500">Kaution: 200,- €</span>
+                    <Package className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Kaution: 200,- €</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Fuel className="w-4 h-4 text-slate-400" />
-                    <span className="text-[11px] font-bold text-slate-500">Tank: Voll / Voll</span>
+                    <Fuel className="w-4 h-4 text-[#94A3B8]" />
+                    <span className="text-[11px] font-bold text-[#64748B]">Tank: Voll / Voll</span>
                   </div>
                 </div>
 
-                <button
+                <button 
                   onClick={() => onNavigate("stationen", { vehicle: "Iveco Daily 3,5t" })}
-                  className="w-full bg-primary hover:bg-primary/90 text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                  className="w-full bg-primary text-white text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[12px] shadow-[0px_10px_15px_-3px_rgba(0,0,0,0.1)] transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                 >
                   TRANSPORTER ANFRAGEN
                   <MapPin className="w-4 h-4" />
@@ -742,34 +729,34 @@ export function HomePage({ onNavigate }: HomePageProps) {
         </div>
 
         {/* Ad Blue & Extra KM Info */}
-        <div className="mt-6 bg-slate-50 rounded-3xl p-6 border border-slate-100">
+        <div className="mt-6 bg-[#F8FAFC] rounded-[24px] p-6 border border-[#F1F5F9]">
           <div className="flex items-center gap-2 mb-4">
             <Info className="w-4 h-4 text-primary" />
-            <h4 className="text-xs font-black text-dark uppercase tracking-wide">Wichtige Miet-info für transporter</h4>
+            <h4 className="text-[12px] font-black text-dark uppercase tracking-[0.5px]">Wichtige Miet-info für transporter</h4>
           </div>
           <div className="space-y-4">
             <div>
-              <p className="text-[11px] font-bold text-slate-500 uppercase mb-2">Ad Blue Pauschale (nach gefahrenen KM):</p>
+              <p className="text-[11px] font-bold text-[#64748B] uppercase mb-2">Ad Blue Pauschale (nach gefahrenen KM):</p>
               <div className="flex flex-wrap gap-4">
                 <div className="flex flex-col">
-                  <span className="text-xs font-black text-dark">0€</span>
-                  <span className="text-[9px] font-bold text-slate-400">0 - 249 km</span>
+                  <span className="text-[12px] font-black text-dark">0€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">0 - 249 km</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-black text-dark">5€</span>
-                  <span className="text-[9px] font-bold text-slate-400">250 - 499 km</span>
+                  <span className="text-[12px] font-black text-dark">5€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">250 - 499 km</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-black text-dark">10€</span>
-                  <span className="text-[9px] font-bold text-slate-400">500 - 749 km</span>
+                  <span className="text-[12px] font-black text-dark">10€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">500 - 749 km</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-xs font-black text-dark">15€</span>
-                  <span className="text-[9px] font-bold text-slate-400">750 - 1000 km</span>
+                  <span className="text-[12px] font-black text-dark">15€</span>
+                  <span className="text-[9px] font-bold text-[#94A3B8]">750 - 1000 km</span>
                 </div>
               </div>
             </div>
-            <p className="text-[10px] text-slate-400 leading-relaxed italic border-t border-slate-200 pt-4">
+            <p className="text-[10px] text-[#94A3B8] leading-relaxed italic border-t border-[#E2E8F0] pt-4">
               Alle Preise inkl. MwSt. Gültig ab 01.01.2026. Vorherige Tarife verlieren ihre Gültigkeit.
             </p>
           </div>
@@ -778,12 +765,12 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
       {/* Phone CTA */}
       <div className="px-5">
-        <div className="bg-gradient-to-r from-dark to-slate-800 rounded-3xl p-6 text-center">
-          <div className="text-[11px] font-black tracking-widest uppercase text-white/60 mb-3">ANhänger & Transporter Mieten?</div>
-          <div className="text-lg font-black text-white mb-4">24/7 MIETSERVICE</div>
-          <button
+        <div className="bg-gradient-to-r from-dark to-[#1E293B] rounded-[24px] p-6 text-center">
+          <div className="text-[11px] font-black tracking-[1.5px] uppercase text-white/60 mb-3">ANhänger & Transporter Mieten?</div>
+          <div className="text-[18px] font-black text-white mb-4">24/7 MIETSERVICE</div>
+          <button 
             onClick={() => onNavigate("stationen")}
-            className="w-full bg-white hover:bg-slate-100 text-dark text-xs font-black tracking-wider uppercase py-4 rounded-2xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+            className="w-full bg-white text-dark text-[13px] font-black tracking-[1.3px] uppercase py-4 rounded-[16px] transition-all active:scale-[0.98] flex items-center justify-center gap-2"
           >
             <MapPin className="w-4 h-4" />
             STATION FINDEN

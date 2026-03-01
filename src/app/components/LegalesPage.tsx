@@ -24,7 +24,7 @@ export function LegalesPage({ onNavigate }: LegalesPageProps) {
       </div>
 
       {/* Content Navigation (Anchor Links) */}
-      <div className="sticky top-[64px] bg-white/80 backdrop-blur-md border-b border-[#E2E8F0] z-40 overflow-x-auto scrollbar-hide">
+      <div className="bg-white border-b border-[#E2E8F0] overflow-x-auto scrollbar-hide">
         <div className="flex px-5 py-3 gap-4 whitespace-nowrap max-w-4xl mx-auto">
           {['Impressum', 'Datenschutz', 'Haftung', 'AGB', 'Widerruf'].map((item) => (
             <a 
@@ -168,7 +168,7 @@ export function LegalesPage({ onNavigate }: LegalesPageProps) {
                 <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
                   <h4 className="text-[14px] font-black text-dark uppercase mb-2">2. Kaution</h4>
                   <p className="text-[13px] text-slate-600 leading-relaxed">
-                    Bei Mietbeginn ist eine Kaution (Höhe modellabhängig) in bar zu hinterlegen. Diese wird bei ordnungsgemäßer Rückgabe sofort erstattet.
+                    Bei Mietbeginn ist eine Kaution in bar (Höhe modellabhängig) zu hinterlegen. Diese wird bei ordnungsgemäßer Rückgabe sofort erstattet.
                   </p>
                 </div>
               </div>
@@ -184,6 +184,18 @@ export function LegalesPage({ onNavigate }: LegalesPageProps) {
                   <h4 className="text-[14px] font-black text-dark uppercase mb-2">4. Rückgabe</h4>
                   <p className="text-[13px] text-slate-600 leading-relaxed">
                     Die Rückgabe muss während der Geschäftszeiten erfolgen. Anhänger/Transporter müssen sauber und (bei Transportern) vollgetankt zurückgegeben werden.
+                  </p>
+                </div>
+                <div className="bg-[#F8FAFC] p-5 rounded-2xl border border-[#EDF2F7]">
+                  <h4 className="text-[14px] font-black text-dark uppercase mb-2 flex items-center gap-2">
+                    <Info className="w-4 h-4 text-primary" />
+                    5. Technische Daten (O1/O2)
+                  </h4>
+                  <p className="text-[13px] text-slate-600 leading-relaxed">
+                    Details zum Fahrzeugschein (Klassen O1 / O2) finden Sie in unseren vollständigen AGB sowie unter 
+                    <a href="https://xn--dvv-mietanhnger-blb.de/Technische-Daten/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline ml-1 font-bold">
+                      dvv-mietanhänger.de/Technische-Daten/
+                    </a>
                   </p>
                 </div>
               </div>

@@ -41,7 +41,7 @@ export function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
     },
     {
       question: "Ist eine Kaution erforderlich?",
-      answer: "Ja, für alle Fahrzeuge und Anhänger ist eine Kaution zu hinterlegen. Die Höhe richtet sich nach dem gewählten Modell und wird bei ordnungsgemäßer Rückgabe sofort erstattet."
+      answer: "Ja, für alle Fahrzeuge und Anhänger ist eine Kaution in bar zu hinterlegen. Die Höhe richtet sich nach dem gewählten Modell und wird bei ordnungsgemäßer Rückgabe sofort erstattet."
     },
     {
       question: "Wie bin ich im Schadensfall versichert?",
@@ -50,6 +50,10 @@ export function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
     {
       question: "Kann ich den Anhänger an einer anderen Station abgeben?",
       answer: "Aktuell bieten wir ausschließlich die Rückgabe an der Anmietstation an (One-Way Mieten sind nicht möglich)."
+    },
+    {
+      question: "Welche Zahlungsmöglichkeiten werden akzeptiert?",
+      answer: "Die Mietgebühr können Sie bequem vor Ort in bar sowie mit allen gängigen EC- und Kreditkarten bezahlen. Bitte beachten Sie: Die Kaution muss grundsätzlich in bar hinterlegt werden."
     }
   ];
 

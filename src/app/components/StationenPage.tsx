@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { MapPin, Phone, Navigation } from 'lucide-react';
 import { allStationsData, Station } from '../data/stations';
 import { ProcessSteps } from './ProcessSteps';
@@ -22,25 +23,25 @@ function StationCard({ station, isMatch, highlightedVehicle, scrollRef }: Statio
         boxShadow: isMatch ? '0 10px 25px -5px rgba(239, 68, 68, 0.1)' : '0 1px 2px 0 rgba(0,0,0,0.05)'
       } : {}}
       transition={{ duration: 2, repeat: isMatch ? Infinity : 0, repeatDelay: 1 }}
-      className={`bg-white rounded-[24px] p-5 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] border h-full flex flex-col ${isMatch ? 'border-primary border-2' : 'border-[#F1F5F9]'}`}
+      className={`bg-white rounded-3xl p-5 shadow-sm border h-full flex flex-col ${isMatch ? 'border-primary border-2' : 'border-slate-100'}`}
     >
       <div className="flex items-start justify-between mb-3">
         <div>
-          <h3 className="text-[18px] font-black text-dark tracking-[-0.45px] leading-tight mb-1">
+          <h3 className="text-lg font-black text-dark tracking-tight leading-tight mb-1">
             {station.name}
           </h3>
-          <p className="text-[11px] font-semibold text-[#64748B]">
+          <p className="text-[11px] font-semibold text-slate-500">
             {station.address}<br />{station.city}
           </p>
           {station.hours && (
-            <p className="text-[9px] font-bold text-primary mt-1 uppercase tracking-[0.5px]">
+            <p className="text-[9px] font-bold text-primary mt-1 uppercase tracking-wide">
               {station.hours}
             </p>
           )}
         </div>
         {station.tag && (
-          <div className={`px-2 py-1 rounded-[12px] ${station.tagColor || 'bg-[#F1F5F9] text-dark'}`}>
-            <span className="text-[9px] font-black tracking-[0.5px] uppercase whitespace-nowrap">
+          <div className={`px-2 py-1 rounded-xl ${station.tagColor || 'bg-slate-100 text-dark'}`}>
+            <span className="text-[9px] font-black tracking-wide uppercase whitespace-nowrap">
               {station.tag}
             </span>
           </div>
@@ -61,7 +62,7 @@ function StationCard({ station, isMatch, highlightedVehicle, scrollRef }: Statio
                 brightness: [1, 1.2, 1]
               } : {}}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className={`${isItemMatch ? 'bg-primary text-white' : 'bg-[#F1F5F9] text-dark'} px-2.5 py-1.5 rounded-[8px] transition-colors h-fit`}
+              className={`${isItemMatch ? 'bg-primary text-white' : 'bg-slate-100 text-dark'} px-2.5 py-1.5 rounded-lg transition-colors h-fit`}
             >
               <span className="text-[9px] font-bold whitespace-nowrap">{item}</span>
             </motion.div>
@@ -72,7 +73,7 @@ function StationCard({ station, isMatch, highlightedVehicle, scrollRef }: Statio
       <div className="flex gap-2.5 pt-4 border-t border-slate-50 mt-auto">
         <a
           href={`tel:${station.phoneClean}`}
-          className="flex-1 bg-dark text-white text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+          className="flex-1 bg-dark text-white text-[10px] font-black tracking-widest uppercase py-3 rounded-xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
         >
           <Phone className="w-3 h-3" />
           ANRUFEN
@@ -81,7 +82,7 @@ function StationCard({ station, isMatch, highlightedVehicle, scrollRef }: Statio
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(station.address + ", " + station.city)}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 bg-primary text-white text-[10px] font-black tracking-[1px] uppercase py-3 rounded-[12px] shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+          className="flex-1 bg-primary text-white text-[10px] font-black tracking-widest uppercase py-3 rounded-xl shadow-primary/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
         >
           <Navigation className="w-3 h-3" />
           ANFAHRT
@@ -121,15 +122,23 @@ export function StationenPage({ highlightedVehicle }: StationenPageProps) {
   }, [highlightedVehicle]);
 
   return (
-    <div className="pb-12 pt-[158px] bg-[#F8FAFC] min-h-screen">
+    <div className="pb-12 pt-[158px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Mietstationen | DVV RENT</title>
+        <meta name="description" content="Finden Sie Ihre nächste DVV RENT Mietstation. Über 16 Standorte in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:title" content="Mietstationen | DVV RENT" />
+        <meta property="og:description" content="Finden Sie Ihre nächste DVV RENT Mietstation. Über 16 Standorte in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         <ProcessSteps />
 
         <div className="mb-8">
-          <h1 className="text-[30px] font-black text-dark tracking-[-0.75px] leading-tight mb-2">
+          <h1 className="text-3xl font-black text-dark tracking-tight leading-tight mb-2">
             Mietstationen
           </h1>
-          <p className="text-[14px] font-medium text-[#64748B]">
+          <p className="text-sm font-medium text-slate-500">
             Über 16 Standorte in Ihrer Nähe
           </p>
           {highlightedVehicle && (
@@ -155,14 +164,14 @@ export function StationenPage({ highlightedVehicle }: StationenPageProps) {
           return (
             <div 
               key={regionIndex} 
-              className={`-mx-5 px-5 py-10 ${isOdd ? 'bg-[#F1F5F9]/50 border-y border-[#E2E8F0]' : 'bg-transparent'}`}
+              className={`-mx-5 px-5 py-10 ${isOdd ? 'bg-slate-100/50 border-y border-slate-200' : 'bg-transparent'}`}
             >
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-10 h-10 rounded-xl bg-dark flex items-center justify-center shadow-lg shadow-dark/10">
                   <MapPin className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h2 className="text-[14px] font-black tracking-[2.8px] uppercase text-dark leading-none mb-1">
+                  <h2 className="text-sm font-black tracking-[2.8px] uppercase text-dark leading-none mb-1">
                     {regionName}
                   </h2>
                   <div className="h-1 w-12 bg-primary rounded-full" />
@@ -175,7 +184,7 @@ export function StationenPage({ highlightedVehicle }: StationenPageProps) {
                   <div className="space-y-6">
                     <div className="flex items-center gap-3 px-4 py-2 bg-primary/5 border border-primary/10 rounded-full w-fit">
                       <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                      <h3 className="text-[10px] font-black uppercase tracking-[2px] text-primary">Transporter-Stationen</h3>
+                      <h3 className="text-[10px] font-black uppercase tracking-widest text-primary">Transporter-Stationen</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {transporterStations.map((station, sIdx) => (
@@ -200,7 +209,7 @@ export function StationenPage({ highlightedVehicle }: StationenPageProps) {
                     {transporterStations.length > 0 && (
                       <div className="flex items-center gap-3 px-4 py-2 bg-slate-100 border border-slate-200 rounded-full w-fit">
                         <div className="w-1.5 h-1.5 rounded-full bg-slate-400" />
-                        <h3 className="text-[10px] font-black uppercase tracking-[2px] text-slate-500">Standard-Anhänger-Stationen</h3>
+                        <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-500">Standard-Anhänger-Stationen</h3>
                       </div>
                     )}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

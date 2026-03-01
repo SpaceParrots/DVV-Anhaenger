@@ -1,14 +1,15 @@
+import { Helmet } from "react-helmet-async";
 import { MapPin, CheckCircle, Package, Info, Clock, CalendarDays, Euro, Gauge, Fuel, Truck } from 'lucide-react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ProcessSteps } from './ProcessSteps';
 
 // Trailer Images
-import trailer750FlachImg from "figma:asset/DVVRENT_Trailer_750kg_Flachplane.png";
-import trailer750HochImg from "figma:asset/DVV_RENT_Trailer_750kg_Hochplane.png";
-import trailer1350Img from "figma:asset/DVV_RENT_Trailer_1350kg_Hochplane.png";
-import trailer2700PImg from "figma:asset/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
-import trailer2700AImg from "figma:asset/DVV_RENT_Trailer_Autotransporter_2700kg.png";
-import vanImg from 'figma:asset/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
+import trailer750FlachImg from "@/assets/DVVRENT_Trailer_750kg_Flachplane.png";
+import trailer750HochImg from "@/assets/DVV_RENT_Trailer_750kg_Hochplane.png";
+import trailer1350Img from "@/assets/DVV_RENT_Trailer_1350kg_Hochplane.png";
+import trailer2700PImg from "@/assets/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
+import trailer2700AImg from "@/assets/DVV_RENT_Trailer_Autotransporter_2700kg.png";
+import vanImg from '@/assets/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
 
 const fullFleet = [
   {
@@ -393,6 +394,14 @@ interface FuhrparkPageProps {
 export function FuhrparkPage({ onNavigate }: FuhrparkPageProps) {
   return (
     <div className="pb-24 md:pb-12 pt-[158px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Fuhrpark - Anhänger & Transporter | DVV RENT</title>
+        <meta name="description" content="Unser Fuhrpark: Anhänger von 750 kg bis 2.700 kg und Transporter. Alle Preise, Maße und technische Daten auf einen Blick." />
+        <meta property="og:title" content="Fuhrpark - Anhänger & Transporter | DVV RENT" />
+        <meta property="og:description" content="Unser Fuhrpark: Anhänger von 750 kg bis 2.700 kg und Transporter. Alle Preise, Maße und technische Daten auf einen Blick." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         <ProcessSteps />
 

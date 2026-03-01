@@ -24,14 +24,14 @@ export function Header({
   ];
 
   return (
-    <div className="fixed top-[35px] left-0 right-0 bg-white z-40 border-b border-gray-100">
+    <header className="fixed top-[35px] left-0 right-0 bg-white z-40 border-b border-gray-100">
       {/* Mobile Header - Centered Logo */}
       <div className="md:hidden flex flex-col items-center py-4 px-5">
         <div className="flex flex-col items-center">
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark">
+            <span className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark block">
               DVV RENT
-            </h1>
+            </span>
             <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
           <p className="text-[9px] font-black tracking-widest uppercase text-dark mt-2">
@@ -45,12 +45,12 @@ export function Header({
         {/* Logo */}
         <button
           onClick={() => onNavigate("home")}
-          className="flex flex-col cursor-pointer transition-all hover:opacity-80"
+          className="flex flex-col transition-all hover:opacity-80"
         >
           <div className="relative">
-            <h1 className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark">
+            <span className="text-[32px] font-black leading-8 tracking-[-1.6px] text-dark block">
               DVV RENT
-            </h1>
+            </span>
             <div className="absolute -top-1 -right-2 w-2 h-2 bg-primary rounded-full" />
           </div>
           <p className="text-[9px] font-black tracking-widest uppercase text-dark mt-1">
@@ -67,6 +67,7 @@ export function Header({
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
+                aria-current={isActive ? "page" : undefined}
                 className={`${item.id === 'kontakt' ? 'hidden' : 'flex'} items-center gap-2 px-5 py-3 rounded-xl font-black text-xs tracking-widest uppercase transition-all  ${
                   isActive
                     ? "bg-primary text-white shadow-md hover:bg-primary/70"
@@ -83,6 +84,6 @@ export function Header({
           })}
         </nav>
       </div>
-    </div>
+    </header>
   );
 }

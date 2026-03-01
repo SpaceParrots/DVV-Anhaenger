@@ -19,7 +19,7 @@ export function TopBar() {
   }, [announcements.length]);
 
   return (
-    <div className="fixed h-[35px] top-0 left-0 right-0 bg-primary z-50 text-white overflow-hidden">
+    <div role="status" aria-live="polite" className="fixed h-[35px] top-0 left-0 right-0 bg-primary z-50 text-white overflow-hidden">
       <div className="relative h-full flex items-center justify-center">
         {announcements.map((announcement, index) => (
           <div

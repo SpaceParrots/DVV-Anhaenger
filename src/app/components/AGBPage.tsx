@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { FileText, Clock, Shield, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 
 interface AGBPageProps {
@@ -7,6 +8,14 @@ interface AGBPageProps {
 export function AGBPage({ onBack }: AGBPageProps) {
   return (
     <div className="pb-24 md:pb-12 pt-[138px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Allgemeine Geschäftsbedingungen | DVV RENT</title>
+        <meta name="description" content="AGB der DVV RENT GmbH für die Vermietung von Anhängern und Transportern." />
+        <meta property="og:title" content="Allgemeine Geschäftsbedingungen | DVV RENT" />
+        <meta property="og:description" content="AGB der DVV RENT GmbH für die Vermietung von Anhängern und Transportern." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         {/* Back Button */}
         {onBack && (

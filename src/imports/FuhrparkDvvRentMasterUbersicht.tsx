@@ -1,8 +1,8 @@
 import svgPaths from "./svg-n5iaoody2g";
-import imgHeroTrailer from "figma:asset/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
-import imgFachmann from "figma:asset/4c350c7c4a79b0149b8a085bdaec40b5aa8111a0.png";
-import img750KgPlane from "figma:asset/21d2b8cae4601d38ee0d567a87667d1b14bf2f53.png";
-import img2600KgAuto from "figma:asset/f4492a193301162db0a9e7059512cf7b9edc460e.png";
+import imgHeroTrailer from "@/assets/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
+import imgFachmann from "@/assets/4c350c7c4a79b0149b8a085bdaec40b5aa8111a0.png";
+import img750KgPlane from "@/assets/21d2b8cae4601d38ee0d567a87667d1b14bf2f53.png";
+import img2600KgAuto from "@/assets/f4492a193301162db0a9e7059512cf7b9edc460e.png";
 
 function Container2() {
   return (
@@ -65,7 +65,7 @@ function HeroTrailer() {
   return (
     <div className="h-[193.38px] relative shrink-0 w-full" data-name="Hero Trailer">
       <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[180.99%] left-0 max-w-none top-[-40.5%] w-full" src={imgHeroTrailer} />
+        <img alt="DVV RENT Anhänger auf der Straße" className="absolute h-[180.99%] left-0 max-w-none top-[-40.5%] w-full" src={imgHeroTrailer} />
       </div>
     </div>
   );
@@ -119,7 +119,7 @@ function Fachmann() {
   return (
     <div className="flex-[1_0_0] min-h-px min-w-px relative w-full" data-name="Fachmann">
       <div className="absolute bg-clip-padding border-0 border-[transparent] border-solid inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={imgFachmann} />
+        <img alt="DVV RENT Fachmann bei der Beratung" className="absolute left-0 max-w-none size-full top-0" src={imgFachmann} />
       </div>
     </div>
   );
@@ -212,7 +212,7 @@ function Component750KgPlane() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="750kg Plane">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
+        <img alt="750 kg Anhänger mit Hochplane" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
       </div>
     </div>
   );
@@ -623,7 +623,7 @@ function Component1350KgPlane() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="1350kg Plane">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
+        <img alt="1350 kg Anhänger mit Hochplane" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
       </div>
     </div>
   );
@@ -1040,7 +1040,7 @@ function Component2000KgKoffer() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="2000kg Koffer">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
+        <img alt="2000 kg Kofferanhänger" className="absolute left-0 max-w-none size-full top-0" src={img750KgPlane} />
       </div>
     </div>
   );
@@ -1391,7 +1391,7 @@ function Component2600KgAuto() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="2600kg Auto">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img2600KgAuto} />
+        <img alt="2600 kg Autotransporter" className="absolute left-0 max-w-none size-full top-0" src={img2600KgAuto} />
       </div>
     </div>
   );
@@ -1742,7 +1742,7 @@ function Component2700KgPlane() {
   return (
     <div className="flex-[1_0_0] h-full min-h-px min-w-px relative" data-name="2700kg Plane">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute left-0 max-w-none size-full top-0" src={img2600KgAuto} />
+        <img alt="2700 kg Planenanhänger" className="absolute left-0 max-w-none size-full top-0" src={img2600KgAuto} />
       </div>
     </div>
   );

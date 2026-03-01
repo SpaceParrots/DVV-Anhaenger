@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import {
   Phone,
   MessageCircle,
@@ -18,13 +19,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 
 // Trailer Images
-import heroTrailerImg from "figma:asset/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
-import trailer750FlachImg from "figma:asset/DVVRENT_Trailer_750kg_Flachplane.png";
-import trailer750HochImg from "figma:asset/DVV_RENT_Trailer_750kg_Hochplane.png";
-import trailer1350Img from "figma:asset/DVV_RENT_Trailer_1350kg_Hochplane.png";
-import trailer2700PImg from "figma:asset/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
-import trailer2700AImg from "figma:asset/DVV_RENT_Trailer_Autotransporter_2700kg.png";
-import vanImg from 'figma:asset/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
+import heroTrailerImg from "@/assets/ad60b82d854c8c96ce9863db9d7c3d55ea2465c2.png";
+import trailer750FlachImg from "@/assets/DVVRENT_Trailer_750kg_Flachplane.png";
+import trailer750HochImg from "@/assets/DVV_RENT_Trailer_750kg_Hochplane.png";
+import trailer1350Img from "@/assets/DVV_RENT_Trailer_1350kg_Hochplane.png";
+import trailer2700PImg from "@/assets/DVV_RENT_Trailer_2700kg_Planenanhänger.png";
+import trailer2700AImg from "@/assets/DVV_RENT_Trailer_Autotransporter_2700kg.png";
+import vanImg from '@/assets/232de78fbf2b913ea9aa8882ad1a4bf2f1c8ef9e.png';
 
 import { allStationsData } from "../data/stations";
 import { ProcessSteps } from "./ProcessSteps";
@@ -225,6 +226,14 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
   return (
     <div className="pb-24 md:pb-12 pt-[158px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>DVV RENT - Anhänger & Transporter mieten in Norddeutschland</title>
+        <meta name="description" content="Anhänger und Transporter mieten ab 15 Euro. Über 50 Fahrzeuge an 16+ Standorten in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:title" content="DVV RENT - Anhänger & Transporter mieten in Norddeutschland" />
+        <meta property="og:description" content="Anhänger und Transporter mieten ab 15 Euro. Über 50 Fahrzeuge an 16+ Standorten in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       {/* Hero Card */}
       <div className="px-5 mb-8">
         <div className="flex flex-col md:flex-row md:min-h-[420px]">
@@ -280,9 +289,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
               {/* Desktop-only overlay button */}
               <div className="absolute bottom-7 right-7 left-7 hidden md:flex p-5 md:p-6 z-10">
-                <button 
+                <button
                   onClick={() => onNavigate("stationen")}
-                  className="w-full bg-primary text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
                 >
                   <MapPin className="w-4 h-4" />
                   MIETSTATION FINDEN
@@ -290,9 +299,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </div>
             </div>
             <div className="md:hidden p-7 md:p-6">
-              <button 
+              <button
                 onClick={() => onNavigate("stationen")}
-                className="w-full bg-primary text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+                className="w-full bg-primary hover:bg-primary/90 text-white font-black text-xs tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98] flex items-center justify-center gap-2"
               >
                 <MapPin className="w-4 h-4" />
                 MIETSTATION FINDEN
@@ -536,9 +545,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     <span className="text-[10px] font-black text-dark uppercase tracking-wide">4h Miete ab {trailer.h4Price}€</span>
                   </div>
 
-                  <button 
+                  <button
                     onClick={() => onNavigate("stationen", { vehicle: trailer.name })}
-                    className="w-full bg-primary text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                    className="w-full bg-primary hover:bg-primary/90 text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                   >
                     STATION FINDEN
                     <MapPin className="w-4 h-4" />
@@ -554,6 +563,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
           <div className="flex items-center justify-between">
             <button
               onClick={prevSlide}
+              aria-label="Vorheriger Anhänger"
               className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronLeft
@@ -567,6 +577,8 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 <button
                   key={index}
                   onClick={() => scrollToSlide(index)}
+                  aria-label={`Anhänger ${index + 1} von ${fleetData.length}`}
+                  aria-current={currentSlide === index ? "true" : undefined}
                   className={`transition-all duration-300 rounded-full ${
                     currentSlide === index
                       ? "w-8 h-2 bg-primary"
@@ -578,6 +590,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
             <button
               onClick={nextSlide}
+              aria-label="Nächster Anhänger"
               className="w-12 h-12 bg-white border-2 border-primary text-primary rounded-full shadow-primary/20 transition-all active:scale-95 hover:bg-primary hover:text-white flex items-center justify-center"
             >
               <ChevronRight
@@ -716,9 +729,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   </div>
                 </div>
 
-                <button 
+                <button
                   onClick={() => onNavigate("stationen", { vehicle: "Iveco Daily 3,5t" })}
-                  className="w-full bg-primary text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                  className="w-full bg-primary hover:bg-primary/90 text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-3"
                 >
                   TRANSPORTER ANFRAGEN
                   <MapPin className="w-4 h-4" />
@@ -768,9 +781,9 @@ export function HomePage({ onNavigate }: HomePageProps) {
         <div className="bg-gradient-to-r from-dark to-slate-800 rounded-3xl p-6 text-center">
           <div className="text-[11px] font-black tracking-widest uppercase text-white/60 mb-3">ANhänger & Transporter Mieten?</div>
           <div className="text-lg font-black text-white mb-4">24/7 MIETSERVICE</div>
-          <button 
+          <button
             onClick={() => onNavigate("stationen")}
-            className="w-full bg-white text-dark text-xs font-black tracking-wider uppercase py-4 rounded-2xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+            className="w-full bg-white hover:bg-slate-100 text-dark text-xs font-black tracking-wider uppercase py-4 rounded-2xl transition-all active:scale-[0.98] flex items-center justify-center gap-2"
           >
             <MapPin className="w-4 h-4" />
             STATION FINDEN

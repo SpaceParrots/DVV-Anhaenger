@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Shield, Lock, Eye, Database, Mail, ArrowLeft } from 'lucide-react';
 
 interface DatenschutzPageProps {
@@ -7,6 +8,14 @@ interface DatenschutzPageProps {
 export function DatenschutzPage({ onBack }: DatenschutzPageProps) {
   return (
     <div className="pb-24 md:pb-12 pt-[138px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Datenschutzerklärung | DVV RENT</title>
+        <meta name="description" content="Datenschutzerklärung der DVV RENT GmbH. Informationen zur Verarbeitung Ihrer personenbezogenen Daten." />
+        <meta property="og:title" content="Datenschutzerklärung | DVV RENT" />
+        <meta property="og:description" content="Datenschutzerklärung der DVV RENT GmbH. Informationen zur Verarbeitung Ihrer personenbezogenen Daten." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         {/* Back Button */}
         {onBack && (

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { RotateCcw, Clock, Mail, FileText, AlertCircle, ArrowLeft } from 'lucide-react';
 
 interface WiderrufsrechtPageProps {
@@ -7,6 +8,14 @@ interface WiderrufsrechtPageProps {
 export function WiderrufsrechtPage({ onBack }: WiderrufsrechtPageProps) {
   return (
     <div className="pb-24 md:pb-12 pt-[138px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Widerrufsrecht | DVV RENT</title>
+        <meta name="description" content="Widerrufsbelehrung und Muster-Widerrufsformular der DVV RENT GmbH." />
+        <meta property="og:title" content="Widerrufsrecht | DVV RENT" />
+        <meta property="og:description" content="Widerrufsbelehrung und Muster-Widerrufsformular der DVV RENT GmbH." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         {/* Back Button */}
         {onBack && (

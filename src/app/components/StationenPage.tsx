@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { MapPin, Phone, Navigation } from 'lucide-react';
 import { allStationsData, Station } from '../data/stations';
 import { ProcessSteps } from './ProcessSteps';
@@ -122,6 +123,14 @@ export function StationenPage({ highlightedVehicle }: StationenPageProps) {
 
   return (
     <div className="pb-12 pt-[158px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Mietstationen | DVV RENT</title>
+        <meta name="description" content="Finden Sie Ihre nächste DVV RENT Mietstation. Über 16 Standorte in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:title" content="Mietstationen | DVV RENT" />
+        <meta property="og:description" content="Finden Sie Ihre nächste DVV RENT Mietstation. Über 16 Standorte in Hamburg, Schleswig-Holstein und Mecklenburg-Vorpommern." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         <ProcessSteps />
 

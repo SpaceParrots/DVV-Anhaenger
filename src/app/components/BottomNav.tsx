@@ -14,7 +14,7 @@ export function BottomNav({ currentPage, onNavigate }: BottomNavProps) {
   ];
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 safe-area-inset-bottom md:hidden">
+    <nav aria-label="Mobile Navigation" className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 z-50 safe-area-inset-bottom md:hidden">
       <div className="flex items-center justify-around px-2 py-3">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -23,6 +23,7 @@ export function BottomNav({ currentPage, onNavigate }: BottomNavProps) {
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
+              aria-current={isActive ? "page" : undefined}
               className={`flex flex-col items-center gap-1 min-w-[60px] transition-all active:scale-95 ${
                 isActive ? 'text-primary' : 'text-slate-400'
               }`}
@@ -35,6 +36,6 @@ export function BottomNav({ currentPage, onNavigate }: BottomNavProps) {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 }

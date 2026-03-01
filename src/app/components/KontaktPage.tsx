@@ -1,8 +1,17 @@
+import { Helmet } from "react-helmet-async";
 import { Phone, Mail, MessageCircle, MapPin, Clock } from 'lucide-react';
 
 export function KontaktPage() {
   return (
     <div className="pb-24 md:pb-12 pt-[158px] bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Kontakt | DVV RENT</title>
+        <meta name="description" content="Kontaktieren Sie DVV RENT: Telefon, WhatsApp, E-Mail. 24/7 erreichbar für Buchungen und Fragen." />
+        <meta property="og:title" content="Kontakt | DVV RENT" />
+        <meta property="og:description" content="Kontaktieren Sie DVV RENT: Telefon, WhatsApp, E-Mail. 24/7 erreichbar für Buchungen und Fragen." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       <div className="px-5">
         <div className="mb-8">
           <h1 className="text-3xl font-black text-dark tracking-tight leading-tight mb-2">
@@ -15,7 +24,7 @@ export function KontaktPage() {
 
         {/* Quick Contact Cards */}
         <div className="grid grid-cols-2 gap-3 mb-8">
-          <button className="bg-primary rounded-[20px] p-5 shadow-primary/30 transition-all active:scale-[0.98]">
+          <button aria-label="Hotline anrufen" className="bg-primary rounded-[20px] p-5 shadow-primary/30 transition-all active:scale-[0.98]">
             <Phone className="w-8 h-8 text-white mb-3" />
             <div className="text-white text-left">
               <div className="text-[10px] font-bold tracking-widest uppercase mb-1">Hotline</div>
@@ -23,7 +32,7 @@ export function KontaktPage() {
             </div>
           </button>
 
-          <button className="bg-whatsapp rounded-[20px] p-5 shadow-[0px_10px_15px_-3px_rgba(37,211,102,0.3)] transition-all active:scale-[0.98]">
+          <button aria-label="WhatsApp Chat starten" className="bg-whatsapp rounded-[20px] p-5 shadow-[0px_10px_15px_-3px_rgba(37,211,102,0.3)] transition-all active:scale-[0.98]">
             <MessageCircle className="w-8 h-8 text-white mb-3" />
             <div className="text-white text-left">
               <div className="text-[10px] font-bold tracking-widest uppercase mb-1">WhatsApp</div>
@@ -132,10 +141,11 @@ export function KontaktPage() {
           
           <form className="space-y-4">
             <div>
-              <label className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
+              <label htmlFor="contact-name" className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
                 Name *
               </label>
               <input
+                id="contact-name"
                 type="text"
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="Ihr vollständiger Name"
@@ -143,10 +153,11 @@ export function KontaktPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
+              <label htmlFor="contact-email" className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
                 E-Mail *
               </label>
               <input
+                id="contact-email"
                 type="email"
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="ihre.email@beispiel.de"
@@ -154,10 +165,11 @@ export function KontaktPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
+              <label htmlFor="contact-phone" className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
                 Telefon
               </label>
               <input
+                id="contact-phone"
                 type="tel"
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors"
                 placeholder="+49 123 456789"
@@ -165,10 +177,10 @@ export function KontaktPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
+              <label htmlFor="contact-subject" className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
                 Betreff
               </label>
-              <select className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors">
+              <select id="contact-subject" className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors">
                 <option>Buchungsanfrage</option>
                 <option>Allgemeine Frage</option>
                 <option>Technisches Problem</option>
@@ -178,10 +190,11 @@ export function KontaktPage() {
             </div>
 
             <div>
-              <label className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
+              <label htmlFor="contact-message" className="block text-[11px] font-bold tracking-wide uppercase text-slate-400 mb-2">
                 Nachricht *
               </label>
               <textarea
+                id="contact-message"
                 rows={5}
                 className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm font-semibold text-black focus:outline-none focus:border-primary transition-colors resize-none"
                 placeholder="Ihre Nachricht an uns..."
@@ -190,7 +203,7 @@ export function KontaktPage() {
 
             <button
               type="submit"
-              className="w-full bg-primary text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98]"
+              className="w-full bg-primary hover:bg-primary/90 text-white text-xs font-black tracking-wider uppercase py-4 rounded-xl shadow-primary/30 transition-all active:scale-[0.98]"
             >
               NACHRICHT SENDEN
             </button>
@@ -210,6 +223,7 @@ export function KontaktPage() {
             {['Facebook', 'Instagram', 'LinkedIn'].map((platform) => (
               <button
                 key={platform}
+                aria-label={`DVV RENT auf ${platform}`}
                 className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center text-white font-bold text-[11px] transition-all active:scale-95 hover:bg-white/20"
               >
                 {platform[0]}

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Shield, Scale, FileText, Info, Gavel, AlertTriangle } from 'lucide-react';
 
 interface LegalesPageProps {
@@ -12,8 +13,16 @@ export function LegalesPage({ onNavigate }: LegalesPageProps) {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <Helmet>
+        <title>Impressum & Rechtliches | DVV RENT</title>
+        <meta name="description" content="Impressum, Datenschutz, AGB und Widerrufsbelehrung von DVV RENT GmbH." />
+        <meta property="og:title" content="Impressum & Rechtliches | DVV RENT" />
+        <meta property="og:description" content="Impressum, Datenschutz, AGB und Widerrufsbelehrung von DVV RENT GmbH." />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+      </Helmet>
       {/* Header */}
-      
+
 
       {/* Hero Section */}
       <div className="pt-24 pb-8 px-5 bg-white border-b border-slate-200">

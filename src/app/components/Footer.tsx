@@ -11,12 +11,13 @@ function FAQItem({ question, answer }: FAQItemProps) {
 
   return (
     <div className="border-b border-slate-200 last:border-0">
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
         className="w-full py-4 flex items-center justify-between text-left transition-colors hover:text-primary"
       >
         <span className="text-sm font-bold text-dark">{question}</span>
-        {isOpen ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
+        {isOpen ? <ChevronUp className="w-4 h-4 text-primary" aria-hidden="true" /> : <ChevronDown className="w-4 h-4 text-slate-400" aria-hidden="true" />}
       </button>
       {isOpen && (
         <div className="pb-4 animate-in fade-in slide-in-from-top-2 duration-200">
@@ -64,7 +65,7 @@ export function Footer({ onNavigate }: { onNavigate: (page: string) => void }) {
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-6">
             <div className="w-1.5 h-6 bg-primary rounded-full" />
-            <h3 className="text-base font-black uppercase tracking-wider text-dark">Häufige Fragen (FAQ)</h3>
+            <h2 className="text-base font-black uppercase tracking-wider text-dark">Häufige Fragen (FAQ)</h2>
           </div>
           <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200">
             {faqs.map((faq, index) => (
